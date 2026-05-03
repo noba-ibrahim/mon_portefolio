@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibrahim NOBA - Portfolio Professionnel</title>
+<style>
+:root{
+  --or:#E8641A;--or-d:#C4521A;--or-l:#F5874A;--or-bg:#FFF4EE;--or-mid:#FDEADE;
+  --w:#fff;--g50:#F7F8FA;--g100:#EEF0F3;--g200:#D8DCE3;--g300:#B8BFC8;
+  --g400:#9BA3B0;--g600:#5C6370;--g700:#444B58;--g800:#2D3040;--g900:#1A1D28;
+  --sw:275px;--r:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Times New Roman',Times,serif;background:var(--w);color:var(--g800);min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--g100);}::-webkit-scrollbar-thumb{background:var(--or);border-radius:4px;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+.au{animation:fadeUp .6s ease both;}
+.ai{animation:fadeIn .5s ease both;}
+.as{animation:scaleIn .5s ease both;}
+.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+.d4{animation-delay:.46s}.d5{animation-delay:.58s}.d6{animation-delay:.72s}
+
+/* SIDEBAR TOGGLE */
+.stoggle{
+  position:fixed;top:0;left:0;z-index:400;
+  width:50px;height:50px;
+  background:var(--or);border:none;border-radius:0 0 10px 0;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:5px;
+  box-shadow:3px 3px 12px rgba(232,100,26,.35);transition:background .2s,left .32s;
+}
+.stoggle:hover{background:var(--or-d);}
+.stoggle span{display:block;width:18px;height:2px;background:white;border-radius:2px;transition:all .3s;}
+.stoggle.open{left:var(--sw);}
+.stoggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.stoggle.open span:nth-child(2){opacity:0;}
+.stoggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;top:0;left:0;width:var(--sw);height:100vh;
+  background:var(--w);border-right:1px solid var(--g200);
+  display:flex;flex-direction:column;z-index:350;overflow-y:auto;
+  transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
+  box-shadow:4px 0 24px rgba(0,0,0,.08);
+}
+.sidebar.open{transform:translateX(0);}
+.sb-top{background:var(--g900);padding:3.5rem 1.75rem 1.5rem;}
+
+/* PROFILE PHOTO SIDEBAR */
+.sb-photo{
+  width:90px;height:90px;border-radius:50%;border:3px solid var(--or);
+  overflow:hidden;margin:0 auto 1rem;cursor:pointer;position:relative;
+  background:var(--g800);display:flex;align-items:center;justify-content:center;
+}
+.sb-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.sb-photo .sp-init{font-family:'Times New Roman',Times,serif;font-size:1.6rem;font-weight:700;color:var(--or);}
+.sb-photo .sp-ov{position:absolute;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;border-radius:50%;font-size:.58rem;color:white;font-weight:700;text-align:center;flex-direction:column;gap:3px;}
+.sb-photo:hover .sp-ov{display:flex;}
+.sb-name{font-family:'Times New Roman',Times,serif;font-size:1rem;font-weight:700;color:white;text-align:center;line-height:1.3;margin-bottom:.3rem;}
+.sb-title{font-size:.64rem;font-weight:600;color:var(--or-l);text-transform:uppercase;letter-spacing:.1em;line-height:1.5;text-align:center;}
+
+.sb-contact{padding:.85rem 1.75rem;border-bottom:1px solid var(--g100);}
+.cr{display:flex;align-items:center;gap:.55rem;font-size:.72rem;color:var(--g600);padding:.25rem 0;}
+.cr svg{color:var(--or);flex-shrink:0;}
+.cr a{color:var(--g600);text-decoration:none;}
+.cr a:hover{color:var(--or);}
+
+.nav-sec{padding:.35rem 0;border-bottom:1px solid var(--g100);}
+.nav-lbl{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:.17em;color:var(--g400);padding:.7rem 1.75rem .28rem;}
+.nav-item{display:flex;align-items:center;gap:.7rem;padding:.5rem 1.75rem;cursor:pointer;text-decoration:none;color:var(--g600);font-size:.8rem;font-weight:600;transition:all .2s;border-left:3px solid transparent;}
+.nav-item:hover{color:var(--or);background:var(--or-bg);border-left-color:rgba(232,100,26,.4);}
+.nav-item.active{color:var(--or);background:var(--or-bg);border-left-color:var(--or);}
+.nav-item svg{opacity:.6;transition:opacity .2s;flex-shrink:0;}
+.nav-item.active svg,.nav-item:hover svg{opacity:1;}
+.nb{margin-left:auto;font-size:.58rem;font-weight:700;background:var(--or);color:white;padding:.12rem .42rem;border-radius:20px;}
+
+.sb-foot{margin-top:auto;padding:1.1rem 1.75rem;background:var(--g50);border-top:1px solid var(--g100);display:flex;gap:.5rem;}
+.sb-btn{padding:.42rem .8rem;border-radius:4px;font-size:.66rem;font-weight:700;letter-spacing:.04em;cursor:pointer;border:none;transition:all .2s;font-family:'Times New Roman',Times,serif;}
+.sb-btn-p{background:var(--or);color:white;flex:1;}.sb-btn-p:hover{background:var(--or-d);}
+.sb-btn-g{background:transparent;color:var(--g600);border:1px solid var(--g200);}.sb-btn-g:hover{color:var(--or);border-color:var(--or);}
+
+/* BACKDROP */
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.22);z-index:300;animation:fadeIn .22s ease;}
+.backdrop.show{display:block;}
+
+/* MAIN */
+.main{margin-left:0;transition:margin-left .32s cubic-bezier(.4,0,.2,1);}
+.main.shifted{margin-left:var(--sw);}
+
+/* SECTIONS */
+.section{padding:4rem 5rem;border-bottom:1px solid var(--g200);background:var(--w);opacity:0;transform:translateY(18px);transition:opacity .52s ease,transform .52s ease;}
+.section:nth-child(even){background:var(--g50);}
+.section.visible{opacity:1;transform:translateY(0);}
+.s-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.17em;color:var(--or);background:var(--or-bg);border:1px solid var(--or-mid);padding:.27rem .7rem;border-radius:20px;margin-bottom:.85rem;}
+.s-title{font-family:'Times New Roman',Times,serif;font-size:1.9rem;font-weight:700;color:var(--g900);line-height:1.2;margin-bottom:.28rem;}
+.s-title em{font-style:italic;color:var(--or);}
+.s-line{width:40px;height:3px;background:var(--or);border-radius:2px;margin-bottom:2.2rem;}
+
+/* ══ HERO - NEW LAYOUT ══ */
+#identification{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:4.5rem 5rem 4rem;background:var(--w)!important;
+}
+.hero-eyebrow{display:flex;align-items:center;gap:.75rem;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--or);margin-bottom:2rem;}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--or);}
+
+/* ROW 1 : Photo left + Text right */
+.hero-top-row{display:flex;align-items:flex-start;gap:3.5rem;margin-bottom:2.5rem;}
+
+/* BIG PHOTO */
+.hero-photo-wrap{
+  width:220px;height:220px;border-radius:50%;
+  border:5px solid var(--or);flex-shrink:0;
+  overflow:hidden;cursor:pointer;position:relative;
+  background:var(--g100);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 40px rgba(232,100,26,.28);
+  transition:box-shadow .3s,transform .3s;
+}
+.hero-photo-wrap:hover{box-shadow:0 16px 50px rgba(232,100,26,.4);transform:scale(1.02);}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-photo-wrap .hp-init{font-family:'Times New Roman',Times,serif;font-size:3.5rem;font-weight:700;color:var(--or);}
+.hero-photo-wrap .hp-ov{position:absolute;inset:0;background:rgba(232,100,26,.75);display:none;align-items:center;justify-content:center;flex-direction:column;gap:.3rem;border-radius:50%;}
+.hero-photo-wrap .hp-ov svg{color:white;}
+.hero-photo-wrap .hp-ov span{font-size:.62rem;color:white;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.hero-photo-wrap:hover .hp-ov{display:flex;}
+
+/* Text block */
+.hero-text-block{flex:1;padding-top:.5rem;}
+.hero-name{font-family:'Times New Roman',Times,serif;font-size:clamp(2.6rem,4.5vw,3.8rem);font-weight:700;color:var(--g900);line-height:1.05;margin-bottom:.5rem;}
+.hero-sub{font-size:.88rem;font-weight:700;color:var(--or);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.25rem;}
+.hero-desc{font-size:.94rem;color:var(--g600);line-height:1.8;max-width:580px;text-align:justify;}
+
+/* ROW 2 : Social info bar */
+.hero-social-bar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.5rem;
+  padding:1.25rem 0;
+  border-top:1px solid var(--g100);
+  border-bottom:1px solid var(--g100);
+  margin-bottom:2rem;
+}
+.si{display:flex;align-items:center;gap:.45rem;font-size:.8rem;color:var(--g700);font-weight:600;}
+.si svg{color:var(--or);flex-shrink:0;}
+.si a{color:var(--g700);text-decoration:none;transition:color .2s;}
+.si a:hover{color:var(--or);}
+.si-sep{width:1px;height:16px;background:var(--g200);}
+
+/* ROW 3 : Stats in one line */
+.hero-stats-row{
+  display:flex;align-items:stretch;gap:0;
+  margin-bottom:2rem;
+  border:1px solid var(--g200);border-radius:10px;overflow:hidden;
+}
+.stat-item{
+  flex:1;text-align:center;padding:1.1rem 1rem;
+  background:var(--w);
+  border-right:1px solid var(--g200);
+  transition:background .2s;
+}
+.stat-item:last-child{border-right:none;}
+.stat-item:hover{background:var(--or-bg);}
+.stat-num{font-family:'Times New Roman',Times,serif;font-size:2rem;font-weight:700;color:var(--or);line-height:1;}
+.stat-label{font-size:.64rem;color:var(--g400);font-weight:600;margin-top:.25rem;text-transform:uppercase;letter-spacing:.07em;}
+
+/* ROW 4 : Action buttons flat row - NO BOX */
+.btn-group-label{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.17em;color:var(--g400);margin-bottom:.75rem;}
+.btn-flat-row{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.btn-grid{display:flex;gap:.6rem;flex-wrap:wrap;}
+.bta{display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem;background:white;border:1.5px solid var(--g200);border-radius:20px;cursor:pointer;transition:all .22s;font-family:'Times New Roman',Times,serif;text-align:left;position:relative;overflow:hidden;white-space:nowrap;}
+.bta::before{content:'';position:absolute;inset:0;background:var(--or-bg);opacity:0;transition:opacity .2s;}
+.bta:hover{border-color:var(--or);transform:translateY(-2px);box-shadow:0 5px 15px rgba(232,100,26,.15);}
+.bta:hover::before{opacity:1;}
+.bta:active{transform:translateY(0) scale(.98);}
+.bta-p{background:var(--or);border-color:var(--or);border-radius:20px;}
+.bta-p::before{background:var(--or-d);}
+.bta-p:hover{border-color:var(--or-d);box-shadow:0 5px 18px rgba(232,100,26,.35);}
+.bta-p .bm{color:white;font-size:.8rem;}
+.bta-c{border-color:var(--g800);background:var(--g900);border-radius:20px;}
+.bta-c .bm{color:white;font-size:.8rem;}
+.bta-c:hover{border-color:var(--or);}
+.bi{width:26px;height:26px;border-radius:50%;background:var(--or-bg);display:flex;align-items:center;justify-content:center;color:var(--or);flex-shrink:0;position:relative;z-index:1;transition:all .2s;}
+.bta:not(.bta-p):not(.bta-c):hover .bi{background:var(--or);color:white;}
+.bta-p .bi{color:white;background:rgba(255,255,255,.25);}
+.bta-c .bi{color:var(--or);background:rgba(255,255,255,.1);}
+.bt{display:flex;flex-direction:column;position:relative;z-index:1;}
+.bm{font-size:.78rem;font-weight:700;color:var(--g900);line-height:1.2;}
+.bs{display:none;}
+
+/* ══ PARCOURS ACADÉMIQUE ══ */
+.acad-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.acad-card{background:white;border:1px solid var(--g200);border-radius:10px;padding:1.75rem;transition:all .25s;display:flex;flex-direction:column;gap:1rem;position:relative;overflow:hidden;}
+.acad-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--or);border-radius:4px 0 0 4px;}
+.acad-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px);}
+.acad-header{display:flex;align-items:center;gap:1.2rem;}
+.acad-logo{width:60px;height:60px;border-radius:10px;border:2px solid var(--g200);overflow:hidden;cursor:pointer;flex-shrink:0;background:var(--g50);display:flex;align-items:center;justify-content:center;position:relative;transition:border-color .2s;}
+.acad-logo:hover{border-color:var(--or);}
+.acad-logo img{width:100%;height:100%;object-fit:contain;display:none;}
+/* Hide all initials/placeholders - show nothing until real image loaded */
+.hp-init{display:none;}
+.sp-init{display:none;}
+.al-init{display:none;font-size:1.3rem;font-weight:700;color:var(--or);text-align:center;line-height:1;}
+.acad-logo .al-ov{position:absolute;inset:0;background:rgba(232,100,26,.8);display:none;align-items:center;justify-content:center;border-radius:8px;font-size:.55rem;color:white;font-weight:700;text-align:center;flex-direction:column;gap:2px;}
+.acad-logo:hover .al-ov{display:flex;}
+.acad-info{flex:1;}
+.acad-status{display:inline-flex;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--or);background:var(--or-bg);border:1px solid var(--or-mid);padding:.17rem .54rem;border-radius:20px;margin-bottom:.38rem;}
+.acad-degree{font-family:'Times New Roman',Times,serif;font-size:1.08rem;font-weight:700;color:var(--g900);line-height:1.3;margin-bottom:.16rem;}
+.acad-school{font-size:.75rem;font-weight:700;color:var(--or);text-transform:uppercase;letter-spacing:.05em;}
+.acad-desc{font-size:.82rem;color:var(--g600);line-height:1.7;text-align:justify;}
+.acad-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.8rem;border-top:1px solid var(--g100);}
+.acad-date{font-size:.72rem;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;}
+.acad-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;color:var(--or);border:1.5px solid var(--or);border-radius:20px;padding:.33rem .82rem;cursor:pointer;background:white;font-family:'Times New Roman',Times,serif;transition:all .2s;}
+.acad-btn:hover{background:var(--or);color:white;}
+
+/* ══ EXPÉRIENCES - 4 par ligne ══ */
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
+.exp-card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.25rem;transition:all .25s;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+.exp-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.exp-card:hover::after{transform:scaleX(1);}
+.exp-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-3px);}
+.exp-type{display:inline-flex;font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--or);background:var(--or-bg);border:1px solid var(--or-mid);padding:.16rem .48rem;border-radius:20px;margin-bottom:.55rem;}
+.exp-period{font-size:.64rem;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.38rem;}
+.exp-title{font-family:'Times New Roman',Times,serif;font-size:.9rem;font-weight:700;color:var(--g900);line-height:1.3;margin-bottom:.18rem;flex:1;}
+.exp-org{font-size:.7rem;font-weight:700;color:var(--g400);margin-bottom:.6rem;line-height:1.35;}
+.exp-preview{font-size:.77rem;color:var(--g600);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:.7rem;}
+.exp-btn{display:inline-flex;align-items:center;gap:.33rem;font-size:.69rem;font-weight:700;color:white;background:var(--or);border:none;border-radius:20px;padding:.32rem .8rem;cursor:pointer;font-family:'Times New Roman',Times,serif;transition:all .2s;margin-top:auto;align-self:flex-start;}
+.exp-btn:hover{background:var(--or-d);}
+
+/* ══ CERTIFICATIONS ══ */
+.cert-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;}
+.cert-card{background:white;border:1px solid var(--g200);border-radius:var(--r);overflow:hidden;transition:all .25s;}
+.cert-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-3px);}
+.cert-card-top{background:var(--or-bg);border-bottom:2px solid var(--or);padding:1.2rem 1.3rem;}
+.cert-card-icon{width:36px;height:36px;background:var(--or);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:.65rem;}
+.cert-card-title{font-family:'Times New Roman',Times,serif;font-size:.93rem;font-weight:700;color:var(--g900);line-height:1.3;margin-bottom:.18rem;}
+.cert-card-issuer{font-size:.66rem;font-weight:600;color:var(--g600);text-transform:uppercase;letter-spacing:.06em;}
+.cert-card-body{padding:1.2rem 1.3rem .6rem;}
+.cert-card-date{display:inline-block;font-size:.63rem;font-weight:700;color:var(--or);background:var(--or-bg);padding:.13rem .48rem;border-radius:20px;margin-bottom:.55rem;}
+.cert-card-desc{font-size:.79rem;color:var(--g600);line-height:1.65;margin-bottom:.75rem;text-align:justify;}
+.cert-card-footer{padding:.65rem 1.3rem;border-top:1px solid var(--g100);display:flex;justify-content:flex-end;}
+.cert-view-btn{display:inline-flex;align-items:center;gap:.33rem;font-size:.71rem;font-weight:700;color:var(--or);border:1.5px solid var(--or);border-radius:20px;padding:.28rem .78rem;cursor:pointer;background:white;font-family:'Times New Roman',Times,serif;transition:all .2s;}
+.cert-view-btn:hover{background:var(--or);color:white;}
+
+/* ══ RECONNAISSANCE CARDS ══ */
+.reconn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;}
+.reconn-card{background:white;border:1px solid var(--g200);border-radius:var(--r);overflow:hidden;transition:all .25s;}
+.reconn-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-3px);}
+.reconn-header{background:var(--or-bg);border-bottom:2px solid var(--or);padding:1.1rem 1.3rem;display:flex;align-items:center;gap:.8rem;}
+.reconn-emoji{width:40px;height:40px;border-radius:8px;background:rgba(232,100,26,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--or);}
+.reconn-h-title{font-family:'Times New Roman',Times,serif;font-size:.88rem;font-weight:700;color:var(--g900);line-height:1.3;}
+.reconn-h-org{font-size:.63rem;color:var(--g600);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:.12rem;}
+.reconn-body{padding:.95rem 1.3rem .5rem;}
+.reconn-date{display:inline-block;font-size:.62rem;font-weight:700;color:var(--or);background:var(--or-bg);padding:.12rem .46rem;border-radius:20px;margin-bottom:.48rem;}
+.reconn-desc{font-size:.78rem;color:var(--g600);line-height:1.65;text-align:justify;}
+.reconn-footer{padding:.6rem 1.3rem;border-top:1px solid var(--g100);display:flex;justify-content:flex-end;}
+
+/* EXP modal justif btn */
+.exp-modal-justif{display:inline-flex;align-items:center;gap:.35rem;font-size:.75rem;font-weight:700;color:white;background:var(--or);border:none;border-radius:20px;padding:.4rem 1rem;cursor:pointer;font-family:'Times New Roman',Times,serif;transition:background .2s;margin-top:.6rem;}
+.exp-modal-justif:hover{background:var(--or-d);}
+
+@media(max-width:1100px){.exp-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:700px){
+  .acad-grid{grid-template-columns:1fr;}
+  .exp-grid{grid-template-columns:1fr 1fr;}
+  .cert-cards-grid,.reconn-grid{grid-template-columns:1fr;}
+  .skills-cats{grid-template-columns:1fr;}
+}
+@media(max-width:480px){.exp-grid{grid-template-columns:1fr;}}
+
+
+/* ══ RESPONSABILITÉS GRID - 2 par ligne ══ */
+.resp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
+.resp-card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.3rem;transition:all .25s;position:relative;overflow:hidden;border-left:3px solid var(--or);}
+.resp-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-2px);}
+.resp-period{font-size:.65rem;font-weight:700;color:var(--or);background:var(--or-bg);padding:.17rem .54rem;border-radius:20px;margin-bottom:.55rem;display:inline-flex;text-transform:uppercase;letter-spacing:.08em;}
+.resp-title{font-family:'Times New Roman',Times,serif;font-size:.97rem;font-weight:700;color:var(--g900);margin-bottom:.2rem;line-height:1.3;}
+.resp-org{font-size:.73rem;font-weight:700;color:var(--or);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.6rem;}
+.resp-b{display:flex;align-items:flex-start;gap:.5rem;font-size:.81rem;color:var(--g600);line-height:1.65;margin-bottom:.27rem;text-align:justify;}
+.resp-b::before{content:'►';color:var(--or);font-size:.48rem;margin-top:.47rem;flex-shrink:0;}
+
+/* Generic voir-plus wrapper */
+.voir-plus-wrap{margin-top:1.5rem;}
+/* ══ TIMELINE ══ */
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:9px;top:8px;bottom:0;width:2px;background:linear-gradient(180deg,var(--or),var(--g200));}
+.tl-item{position:relative;padding:0 0 2rem 1.75rem;}
+.tl-dot{position:absolute;left:-8px;top:5px;width:20px;height:20px;border-radius:50%;background:white;border:2.5px solid var(--or);display:flex;align-items:center;justify-content:center;}
+.tl-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--or);}
+.tl-card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.3rem;transition:all .25s;border-left:3px solid transparent;}
+.tl-card:hover{border-left-color:var(--or);box-shadow:0 4px 20px rgba(0,0,0,.06);transform:translateX(3px);}
+.tl-period{display:inline-flex;font-size:.65rem;font-weight:700;color:var(--or);background:var(--or-bg);padding:.18rem .55rem;border-radius:20px;margin-bottom:.55rem;text-transform:uppercase;letter-spacing:.08em;}
+.tl-title{font-family:'Times New Roman',Times,serif;font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:.17rem;line-height:1.3;}
+.tl-org{font-size:.74rem;font-weight:700;color:var(--g400);margin-bottom:.62rem;text-transform:uppercase;letter-spacing:.04em;}
+.tl-b{display:flex;align-items:flex-start;gap:.5rem;font-size:.81rem;color:var(--g600);line-height:1.65;margin-bottom:.27rem;}
+.tl-b::before{content:'►';color:var(--or);font-size:.5rem;margin-top:.45rem;flex-shrink:0;}
+
+/* SKILLS - 2-column pills with symbols */
+.skills-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem;}
+.skill-block{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.3rem;transition:all .25s;}
+.skill-block:hover{box-shadow:0 4px 18px rgba(0,0,0,.06);transform:translateY(-2px);}
+.sk-cat{display:flex;align-items:center;gap:.55rem;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--or);margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid var(--g100);}
+.sk-2col{display:grid;grid-template-columns:1fr 1fr;gap:.3rem .75rem;}
+.sk-pill{display:flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:600;color:var(--g700);padding:.22rem 0;cursor:default;transition:color .18s;}
+.sk-pill::before{content:'◆';color:var(--or);font-size:.45rem;flex-shrink:0;}
+.sk-pill:hover{color:var(--or);}
+.tech-section{margin-top:1.7rem;}
+.tech-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--g400);margin-bottom:.65rem;}
+.tags-wrap{display:flex;flex-wrap:wrap;gap:.42rem;}
+.tag-tech{font-size:.71rem;font-weight:600;padding:.26rem .66rem;background:var(--g100);color:var(--g600);border:1px solid var(--g200);border-radius:4px;cursor:default;transition:all .2s;}
+.tag-tech:hover{background:var(--or-bg);color:var(--or);border-color:var(--or-mid);}
+.tag-soft{font-size:.71rem;font-weight:600;padding:.26rem .66rem;background:var(--or-bg);color:var(--or-d);border:1px solid var(--or-mid);border-radius:4px;cursor:default;}
+
+/* PROJECTS GRID */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;}
+.proj-card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.75rem;transition:all .25s;cursor:pointer;position:relative;overflow:hidden;}
+.proj-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.proj-card:hover::after{transform:scaleX(1);}
+.proj-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.09);transform:translateY(-3px);}
+.proj-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.61rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--or);background:var(--or-bg);border:1px solid var(--or-mid);padding:.19rem .56rem;border-radius:20px;margin-bottom:.9rem;}
+.proj-title{font-family:'Times New Roman',Times,serif;font-size:.98rem;font-weight:700;color:var(--g900);margin-bottom:.55rem;line-height:1.4;}
+.proj-org{font-size:.7rem;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.85rem;}
+.proj-desc{font-size:.82rem;color:var(--g600);line-height:1.8;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;text-align:justify;margin-bottom:.5rem;}
+.proj-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--g100);}
+.proj-tool{font-size:.64rem;font-weight:700;padding:.18rem .5rem;background:var(--g100);color:var(--g600);border-radius:3px;border:1px solid var(--g200);}
+.proj-card .proj-click-hint{font-size:.64rem;color:var(--or);font-weight:700;margin-top:.9rem;display:flex;align-items:center;gap:.3rem;}
+
+.voir-plus-btn{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:1.5rem;padding:.75rem 2rem;background:white;border:1.5px solid var(--or);border-radius:var(--r);color:var(--or);font-family:'Times New Roman',Times,serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s;width:fit-content;}
+.voir-plus-btn:hover{background:var(--or);color:white;box-shadow:0 5px 18px rgba(232,100,26,.28);}
+.voir-plus-btn svg{transition:transform .3s;}
+.voir-plus-btn.expanded svg{transform:rotate(180deg);}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
+.card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.3rem;transition:all .25s;position:relative;overflow:hidden;}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.card:hover::after{transform:scaleX(1);}
+.card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-3px);}
+.card-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.61rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--or);background:var(--or-bg);border:1px solid var(--or-mid);padding:.19rem .55rem;border-radius:20px;margin-bottom:.65rem;}
+.card-title{font-family:'Times New Roman',Times,serif;font-size:1.02rem;font-weight:700;color:var(--g900);margin-bottom:.2rem;line-height:1.3;}
+.card-org{font-size:.7rem;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.55rem;}
+.card-desc{font-size:.8rem;color:var(--g600);line-height:1.7;text-align:justify;}
+
+/* CERT PHOTO UPLOAD ZONE */
+.cert-zone{margin-top:.9rem;border:1.5px dashed var(--g200);border-radius:var(--r);padding:.8rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--g50);position:relative;min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.35rem;}
+.cert-zone:hover{border-color:var(--or);background:var(--or-bg);}
+.cert-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.cert-zone .cz-icon{color:var(--g400);transition:color .2s;}.cert-zone:hover .cz-icon{color:var(--or);}
+.cert-zone .cz-text{font-size:.69rem;color:var(--g400);font-weight:600;transition:color .2s;}.cert-zone:hover .cz-text{color:var(--or);}
+.cert-zone .cz-prev{width:100%;max-height:160px;object-fit:contain;border-radius:4px;display:none;}
+.cert-zone .cz-loaded{font-size:.7rem;color:var(--or);font-weight:700;display:none;}
+/* Clickable cert zones show a preview hint */
+.cert-zone.has-image{border-color:var(--or);background:var(--or-bg);cursor:zoom-in;}
+.cert-zone.has-image .cz-text{display:none;}
+.cert-zone.has-image .cz-prev{display:block;}
+.cert-zone.has-image .cz-loaded{display:block;}
+
+/* DISTINCTIONS */
+.dist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.2rem;}
+.dist-card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.3rem;transition:all .25s;display:flex;gap:.9rem;}
+.dist-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px);border-color:var(--or-mid);}
+.dist-rank{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Times New Roman',Times,serif;font-size:1.05rem;font-weight:700;flex-shrink:0;}
+.rg{background:#FFF4CC;color:#B8860B;border:2px solid #E8C61A;}
+.rb{background:#FFF0E8;color:#B8530B;border:2px solid #E8841A;}
+.dist-info{flex:1;}
+.dist-title{font-size:.85rem;font-weight:700;color:var(--g900);margin-bottom:.16rem;line-height:1.35;}
+.dist-org{font-size:.69rem;color:var(--g400);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.42rem;}
+.dist-year{display:inline-block;font-size:.62rem;font-weight:700;color:var(--or);background:var(--or-bg);padding:.12rem .46rem;border-radius:20px;}
+
+/* LANGUES */
+.lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1.2rem;}
+.lang-card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.5rem 1.3rem;text-align:center;transition:all .25s;}
+.lang-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.07);transform:translateY(-3px);border-color:var(--or-mid);}
+.lang-flag{font-size:2.1rem;margin-bottom:.5rem;}
+.lang-name{font-family:'Times New Roman',Times,serif;font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:.2rem;}
+.lang-level{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--or);margin-bottom:.7rem;}
+.lang-bar{height:4px;background:var(--g100);border-radius:2px;overflow:hidden;}
+.lang-fill{height:100%;background:var(--or);border-radius:2px;width:0%;transition:width 1.2s ease .4s;}
+
+/* LOISIRS */
+.hobby-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:.95rem;}
+.hobby-card{background:white;border:1px solid var(--g200);border-radius:var(--r);padding:1.3rem 1rem;text-align:center;cursor:default;transition:all .25s;}
+.hobby-card:hover{background:var(--or-bg);border-color:var(--or-mid);transform:translateY(-2px);box-shadow:0 4px 16px rgba(232,100,26,.1);}
+.hobby-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem;color:var(--or);}
+.hobby-card:hover .hobby-icon{color:var(--or-d);}
+.hobby-label{font-size:.76rem;font-weight:700;color:var(--g700);}
+.hobby-card:hover .hobby-label{color:var(--or-d);}
+
+/* PRINT FAB */
+.print-fab{position:fixed;bottom:2rem;right:2rem;padding:.62rem 1.3rem;background:var(--or);color:white;border:none;border-radius:40px;font-family:'Times New Roman',Times,serif;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;display:flex;align-items:center;gap:.5rem;box-shadow:0 4px 20px rgba(232,100,26,.4);z-index:50;transition:all .25s;}
+.print-fab:hover{background:var(--or-d);transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,100,26,.5);}
+
+/* ═══ PROJECT MODAL ═══ */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;padding:1.5rem;animation:fadeIn .2s ease;}
+.modal-overlay.show{display:flex;}
+.modal-box{background:white;border-radius:12px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:slideDown .3s ease;}
+.modal-header{background:var(--g900);padding:1.8rem 2rem 1.5rem;border-radius:12px 12px 0 0;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;background:rgba(255,255,255,.12);border:none;border-radius:50%;color:white;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.modal-close:hover{background:var(--or);}
+.modal-badge{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--or-l);background:rgba(232,100,26,.18);padding:.22rem .6rem;border-radius:20px;display:inline-block;margin-bottom:.7rem;}
+.modal-title{font-family:'Times New Roman',Times,serif;font-size:1.25rem;font-weight:700;color:white;line-height:1.3;margin-bottom:.3rem;}
+.modal-meta{font-size:.73rem;color:rgba(255,255,255,.55);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.modal-body{padding:1.8rem 2rem;}
+.modal-section{margin-bottom:1.4rem;}
+.modal-section-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--or);margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--g100);}
+.modal-text{font-size:.85rem;color:var(--g600);line-height:1.75;text-align:justify;}
+.modal-results{list-style:none;padding:0;}
+.modal-results li{display:flex;align-items:flex-start;gap:.55rem;font-size:.83rem;color:var(--g600);line-height:1.6;margin-bottom:.35rem;}
+.modal-results li::before{content:'►';color:var(--or);font-size:.5rem;margin-top:.45rem;flex-shrink:0;}
+.modal-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;}
+.modal-tool{font-size:.7rem;font-weight:700;padding:.22rem .6rem;background:var(--g100);color:var(--g600);border-radius:3px;border:1px solid var(--g200);}
+.modal-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:700;color:var(--or);text-decoration:none;border:1.5px solid var(--or);border-radius:4px;padding:.4rem .9rem;transition:all .2s;margin-top:.2rem;margin-right:.5rem;}
+.modal-link:hover{background:var(--or);color:white;}
+
+/* ═══ CERTIFICATE MODAL ═══ */
+.cert-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2000;align-items:center;justify-content:center;padding:2rem;animation:fadeIn .2s ease;}
+.cert-modal-overlay.show{display:flex;}
+.cert-modal-frame{background:white;border-radius:12px;max-width:700px;width:100%;position:relative;overflow:hidden;animation:scaleIn .3s ease;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.cert-modal-top{background:var(--g900);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.cert-modal-top-title{font-family:'Times New Roman',Times,serif;font-size:.95rem;font-weight:700;color:white;}
+.cert-modal-close{width:32px;height:32px;background:rgba(255,255,255,.12);border:none;border-radius:50%;color:white;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.cert-modal-close:hover{background:var(--or);}
+.cert-modal-img-wrap{padding:1.5rem;background:var(--g50);text-align:center;}
+.cert-modal-img-wrap img{max-width:100%;max-height:60vh;object-fit:contain;border-radius:6px;border:1px solid var(--g200);box-shadow:0 4px 20px rgba(0,0,0,.1);}
+.cert-modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--g200);display:flex;align-items:center;gap:1rem;}
+.cert-modal-name{font-size:.8rem;font-weight:700;color:var(--g700);}
+.cert-modal-dl{margin-left:auto;padding:.4rem .9rem;background:var(--or);color:white;border:none;border-radius:4px;font-size:.73rem;font-weight:700;cursor:pointer;font-family:'Times New Roman',Times,serif;transition:background .2s;}
+.cert-modal-dl:hover{background:var(--or-d);}
+
+@media(max-width:1024px){
+  .hero-top-row{gap:2.5rem;}
+  .hero-photo-wrap{width:180px;height:180px;}
+  .proj-grid{grid-template-columns:repeat(2,1fr);}
+  .section{padding:3.5rem 3rem;}
+  #identification{padding:4rem 3rem;}
+}
+@media(max-width:700px){
+  .section{padding:3rem 1.5rem;}
+  #identification{padding:3.5rem 1.5rem;}
+  .hero-top-row{flex-direction:column;gap:1.5rem;align-items:center;}
+  .hero-photo-wrap{width:140px;height:140px;}
+  .hero-text-block{text-align:center;}
+  .hero-social-bar{justify-content:center;}
+  .si-sep{display:none;}
+  .proj-grid{grid-template-columns:1fr;}
+  .btn-flat-row{justify-content:center;}
+  .hero-stats-row{flex-wrap:wrap;}
+  .stat-item{min-width:calc(50% - 1px);}
+  .sk-2col{grid-template-columns:1fr;}
+}
+@media print{
+  .sidebar,.print-fab,.stoggle,.backdrop,.modal-overlay,.cert-modal-overlay{display:none!important;}
+  .main{margin-left:0!important;}
+  .section{opacity:1!important;transform:none!important;page-break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOGGLE -->
+<button class="stoggle" id="stoggle" title="Menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="backdrop" id="backdrop"></div>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <div class="sb-photo" id="sbPhotoWrap">
+      <!-- REMPLACER l'URL ci-dessous par le lien direct de ta photo -->
+      <img id="sbImg" src="Distinctions/image/photo_profil.jfif" alt="Ibrahim NOBA" >
+      <span class="sp-init" id="sbInit">IN</span>
+      <div class="sp-ov"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Photo</div>
+    </div>
+    <div class="sb-name">Poko Ibrahim NOBA</div>
+    <div class="sb-title">Analyste Statisticien<br>ENSAE Pierre Ndiaye</div>
+  </div>
+  <div class="sb-contact">
+    <div class="cr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Fass, Dakar, Sénégal</div>
+    <div class="cr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12 19.79 19.79 0 0 1 1.27 3.45 2 2 0 0 1 3.22 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg><a href="tel:+221789558854">+221 78 955 88 54</a></div>
+    <div class="cr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:nobapokoibrahim@gmail.com">nobapokoibrahim@gmail.com</a></div>
+    <div class="cr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><a href="https://www.linkedin.com/in/votre-profil" target="_blank">LinkedIn · Poko Ibrahim NOBA</a></div>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Profil</div>
+    <a href="#identification" class="nav-item active" data-s="identification"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Identification</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Parcours</div>
+    <a href="#certifications" class="nav-item" data-s="certifications"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Formation</a>
+    <a href="#experiences" class="nav-item" data-s="experiences"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Expériences</a>
+    <a href="#projets" class="nav-item" data-s="projets"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>Projets &amp; Travaux</a>
+    <a href="#responsabilites" class="nav-item" data-s="responsabilites"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Responsabilités</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Compétences</div>
+    <a href="#competences" class="nav-item" data-s="competences"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Compétences</a>
+    <a href="#langues" class="nav-item" data-s="langues"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>Langues</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Récompenses</div>
+    <a href="#distinctions" class="nav-item" data-s="distinctions"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Distinctions</a>
+    <a href="#certifs" class="nav-item" data-s="certifs"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Certifications</a>
+    <a href="#reconnaissance" class="nav-item" data-s="reconnaissance"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>Reconnaissance</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Personnel</div>
+    <a href="#loisirs" class="nav-item" data-s="loisirs"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Loisirs</a>
+  </div>
+  <div class="sb-foot">
+    <button class="sb-btn sb-btn-p" onclick="window.open('https://raw.githubusercontent.com/noba-ibrahim/cv_ibrahim_noba/main/curriculum_vitae_Ibrahim_NOBA.pdf','_blank')">⬇ CV PDF</button>
+    <button class="sb-btn sb-btn-g" onclick="window.location.href='mailto:nobapokoibrahim@gmail.com'">@ Email</button>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main" id="main">
+
+  <!-- ① IDENTIFICATION -->
+  <section id="identification" class="section visible">
+    <div class="hero-eyebrow ai">Portfolio</div>
+
+    <!-- ROW 1 : Photo + Texte -->
+    <div class="hero-top-row">
+      <div class="hero-photo-wrap as d1" id="heroPhotoWrap">
+        <img id="heroImg" src="Distinctions/image/photo_profil.jfif" alt="Ibrahim NOBA" >
+        <span class="hp-init" id="hpInit">IN</span>
+        <div class="hp-ov">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span>Changer photo</span>
+        </div>
+      </div>
+      <div class="hero-text-block au d1">
+        <h1 class="hero-name">Poko Ibrahim NOBA</h1>
+        <p class="hero-sub">Analyste Statisticien · Option Data Science · ENSAE Pierre Ndiaye</p>
+        <p class="hero-desc">Élève Analyste Statisticien en fin de formation, passionné par la donnée, l'analyse économique et les politiques de développement. Doté d'expériences concrètes en enquêtes ménages, évaluation d'impacts et modélisation statistique.</p>
+      </div>
+    </div>
+
+    <!-- ROW 2 : Informations sociales -->
+    <div class="hero-social-bar au d2">
+      <div class="si">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Fass, Dakar, Sénégal
+      </div>
+      <div class="si-sep"></div>
+      <div class="si">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        Disponibilté : Actuellement
+      </div>
+      <div class="si-sep"></div>
+      <div class="si">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12 19.79 19.79 0 0 1 1.27 3.45 2 2 0 0 1 3.22 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+        <a href="tel:+221789558854">+221 78 955 88 54</a>
+      </div>
+      <div class="si-sep"></div>
+      <div class="si">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:nobapokoibrahim@gmail.com">nobapokoibrahim@gmail.com</a>
+      </div>
+      <div class="si-sep"></div>
+      <div class="si">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/poko-ibrahim-noba-291209315" target="_blank">LinkedIn · Ibrahim NOBA</a>
+      </div>
+      <div class="si-sep"></div>
+      <div class="si">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Célibataire
+      </div>
+    </div>
+
+    <!-- ROW 3 : Stats en ligne -->
+    <div class="hero-stats-row au d3">
+      <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Stages &amp; Missions</div></div>
+      <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">Projets Réalisés</div></div>
+      <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Années d'expérience</div></div>
+      <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Distinctions</div></div>
+      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Responsabilités</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Langues</div></div>
+    </div>
+
+    <!-- ROW 4 : Actions rapides - une seule ligne, sans boîte -->
+    <div class="au d4">
+      <div class="btn-group-label">Actions rapides</div>
+      <div class="btn-flat-row">
+        <button class="bta bta-p" onclick="window.open('https://raw.githubusercontent.com/noba-ibrahim/cv_ibrahim_noba/main/curriculum_vitae_Ibrahim_NOBA.pdf','_blank')">
+          <div class="bi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg></div>
+          <div class="bt"><span class="bm">Télécharger CV</span></div>
+        </button>
+        <button class="bta" onclick="go('#experiences')">
+          <div class="bi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div class="bt"><span class="bm">Expériences</span></div>
+        </button>
+        <button class="bta" onclick="go('#competences')">
+          <div class="bi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="bt"><span class="bm">Compétences</span></div>
+        </button>
+        <button class="bta" onclick="go('#projets')">
+          <div class="bi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></div>
+          <div class="bt"><span class="bm">Projets</span></div>
+        </button>
+        <button class="bta" onclick="go('#distinctions')">
+          <div class="bi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="bt"><span class="bm">Distinctions</span></div>
+        </button>
+        <button class="bta" onclick="go('#reconnaissance')">
+          <div class="bi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div>
+          <div class="bt"><span class="bm">Reconnaissance</span></div>
+        </button>
+        <button class="bta bta-c" onclick="window.location.href='mailto:nobapokoibrahim@gmail.com'">
+          <div class="bi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="bt"><span class="bm">Me Contacter</span></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- CV input caché -->
+    <input type="file" id="cvInput" accept=".pdf,.doc,.docx" style="display:none">
+  </section>
+
+  <!-- ② PARCOURS ACADÉMIQUE -->
+  <section id="certifications" class="section">
+    <div class="s-tag">02 - Formation Académique</div>
+    <h2 class="s-title">Parcours <em>Académique</em></h2><div class="s-line"></div>
+    <div class="acad-grid">
+      <!-- ENSAE -->
+      <div class="acad-card">
+        <div class="acad-header">
+          <div class="acad-logo" id="alENSAE" onclick="openAcadLogoModal('alENSAE','Logo ENSAE')">
+            <img id="alENSAE-img" src="Distinctions/image/logo_ensae.png" alt="ENSAE" onerror="this.style.display='none';" style="display:block;">
+            <div class="al-init">ENSAE</div>
+            <div class="al-ov"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Photo</div>
+            <input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;" onclick="event.stopPropagation()" onchange="loadAcadLogo(this,'alENSAE','Logo ENSAE')">
+          </div>
+          <div class="acad-info">
+            <div class="acad-status">En cours · 2023–2025</div>
+            <div class="acad-degree">Analyste Statisticien - Option Data Science</div>
+            <div class="acad-school">ENSAE Pierre Ndiaye · Dakar, Sénégal</div>
+          </div>
+        </div>
+        <div class="acad-desc">Formation d'excellence en Analyse Statistique et Économique. Couverture de la statistique appliquée, l'économétrie, les sondages, la démographie, la data science et les politiques de développement.</div>
+        <div class="acad-footer">
+          <span class="acad-date">2023 - 2025</span>
+              <button class="acad-btn" onclick="openFileModal('Distinctions/Diplomes/certificat_inscription.png','Distinctions/Diplomes/certificat_scolarité.pdf','Diplôme Bac S1 - Mention Bien')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Voir le diplôme
+              </button>
+          <input type="file" id="acad-d1-inp" accept="image/*,.pdf" style="display:none" onchange="loadDiplome(this,'acad-d1','Attestation ENSAE')">
+        </div>
+      </div>
+      <!-- CSHI -->
+      <div class="acad-card">
+        <div class="acad-header">
+          <div class="acad-logo" id="alCSHI" onclick="openAcadLogoModal('alCSHI','Logo CSHI')">
+            <img id="alCSHI-img" src="Distinctions/image/logo_horizon.png" alt="CSHI" onerror="this.style.display='none';" style="display:block;">
+            <div class="al-init">CSHI</div>
+            <div class="al-ov"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Photo</div>
+            <input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;" onclick="event.stopPropagation()" onchange="loadAcadLogo(this,'alCSHI','Logo CSHI')">
+          </div>
+          <div class="acad-info">
+            <div class="acad-status">Obtenu · 2022–2023</div>
+            <div class="acad-degree">Baccalauréat Scientifique S1 - Mention Bien</div>
+            <div class="acad-school">Collège d'Excellence Horizon International · Ouagadougou</div>
+          </div>
+        </div>
+        <div class="acad-desc">Baccalauréat série S1 avec la mention <strong>Bien</strong>. Formation d'excellence préparatoire aux grandes écoles scientifiques africaines.</div>
+        <div class="acad-footer">
+          <span class="acad-date">2022 - 2023</span>
+              <button class="acad-btn" onclick="openFileModal('Distinctions/Diplomes/diplome_baccalaureat.png','Distinctions/Diplomes/diplome_baccalaureat.pdf','Diplôme Bac S1 - Mention Bien')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Voir le diplôme
+              </button>
+          <input type="file" id="acad-d2-inp" accept="image/*,.pdf" style="display:none" onchange="loadDiplome(this,'acad-d2','Diplôme Bac S1 - Mention Bien')">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ EXPÉRIENCES - 4 par ligne -->
+  <section id="experiences" class="section">
+    <div class="s-tag">03 - Parcours Professionnel</div>
+    <h2 class="s-title">Expériences</h2><div class="s-line"></div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-type">Stage</div>
+        <div class="exp-period">Janv. 2026 - En cours</div>
+        <div class="exp-title">Stage - Direction des Statistiques Économiques et de la Comptabilité Nationale</div>
+        <div class="exp-org">DSECN · ANSD · Dakar</div>
+        <div class="exp-preview">Exploration de la banque de données économiques et financières.</div>
+        <button class="exp-btn" onclick="openExpModal(3)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Voir détails
+        </button>
+      </div>
+      <!-- Card 1 -->
+      <div class="exp-card">
+        <div class="exp-type">Enquête Académique</div>
+        <div class="exp-period">Sept. 2025 - Nov. 2025</div>
+        <div class="exp-title">Enquête - Bureau de Mise à Niveau (BMN)</div>
+        <div class="exp-org">BMN du Sénégal × ENSAE Pierre Ndiaye · Dakar</div>
+        <div class="exp-preview">Conception des outils et supervision pendant la collecte des données.</div>
+        <button class="exp-btn" onclick="openExpModal(0)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Voir détails
+        </button>
+      </div>
+      <!-- Card 2 -->
+      <div class="exp-card">
+        <div class="exp-type">Stage</div>
+        <div class="exp-period">Août - Oct. 2025</div>
+        <div class="exp-title">Stage - Direction des Statistiques Démographiques et Sociales</div>
+        <div class="exp-org">DSDS · ANSD · Dakar</div>
+        <div class="exp-preview">3e édition de l'Enquête Harmonisée sur les Conditions de Vie des Ménages (EHCVM).</div>
+        <button class="exp-btn" onclick="openExpModal(1)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Voir détails
+        </button>
+      </div>
+      <!-- Card 3 -->
+      <div class="exp-card">
+        <div class="exp-type">Stage</div>
+        <div class="exp-period">Juin - Août 2025</div>
+        <div class="exp-title">Stage - Programme d'Analyse des Systèmes Éducatifs (PASEC)</div>
+        <div class="exp-org">PASEC · CONFEMEN · Dakar</div>
+        <div class="exp-preview">Analyse d'instruments d'évaluation éducative et suivi des modifications.</div>
+        <button class="exp-btn" onclick="openExpModal(2)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Voir détails
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ COMPÉTENCES -->
+  <section id="competences" class="section">
+    <div class="s-tag">04 - Expertise Technique</div>
+    <h2 class="s-title">Compétences</h2><div class="s-line"></div>
+    <div class="skills-cats">
+
+      <!-- L1 : Statistiques + Programmation -->
+      <div class="skill-block">
+        <div class="sk-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Statistiques</div>
+        <div class="sk-2col">
+          <span class="sk-pill">Sondages &amp; inférence</span><span class="sk-pill">Stat. descriptive</span>
+          <span class="sk-pill">Statistiques agricoles</span><span class="sk-pill">Stat. de la santé</span>
+          <span class="sk-pill">Stat. de l'éducation</span><span class="sk-pill">Archivage de données</span>
+          <span class="sk-pill">Anonymisation</span><span class="sk-pill">Data Warehouse</span>
+          <span class="sk-pill">Conception questionnaires</span><span class="sk-pill">Enquêtes ménages/entreprises</span>
+          <span class="sk-pill">Construction d'indicateurs</span><span class="sk-pill">Méthodes d'échantillonnage</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="sk-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Programmation &amp; IA</div>
+        <div class="sk-2col">
+          <span class="sk-pill">Python</span><span class="sk-pill">R</span>
+          <span class="sk-pill">Stata</span><span class="sk-pill">SPSS</span>
+          <span class="sk-pill">SQL</span><span class="sk-pill">VBA / Excel</span>
+          <span class="sk-pill">HTML / CSS / JS</span><span class="sk-pill">Epi-Info</span>
+          <span class="sk-pill">Machine Learning</span><span class="sk-pill">Deep Learning</span>
+          <span class="sk-pill">NLP / TF-IDF</span><span class="sk-pill">Big Data</span>
+        </div>
+      </div>
+
+      <!-- L2 : Data Viz + Analyse de données -->
+      <div class="skill-block">
+        <div class="sk-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Data Viz &amp; Tableaux de bord</div>
+        <div class="sk-2col">
+          <span class="sk-pill">R Shiny</span><span class="sk-pill">Power BI</span>
+          <span class="sk-pill">Excel avancé</span><span class="sk-pill">Plotly / Dash</span>
+          <span class="sk-pill">Dashboards interactifs</span><span class="sk-pill">QGIS (cartographie)</span>
+          <span class="sk-pill">OpenStreetMap / OSM</span><span class="sk-pill">Cartographie thématique</span>
+          <span class="sk-pill">Dash</span><span class="sk-pill">Django</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="sk-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Analyse de données</div>
+        <div class="sk-2col">
+          <span class="sk-pill">Analyse démographique</span><span class="sk-pill">Analyse macro.</span>
+          <span class="sk-pill">Analyse micro.</span><span class="sk-pill">Analyse spatiale SIG</span>
+          <span class="sk-pill">Analyse de pauvreté</span><span class="sk-pill">Analyse d'inégalités</span>
+          <span class="sk-pill">Modèle linéaire</span><span class="sk-pill">Microsimulation</span>
+          <span class="sk-pill">Indicateurs de développement</span><span class="sk-pill">Évaluation d'impact</span>
+        </div>
+      </div>
+
+      <!-- L3 : Sciences Sociales + Communication -->
+      <div class="skill-block">
+        <div class="sk-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Sciences Sociales</div>
+        <div class="sk-2col">
+          <span class="sk-pill">Sociologie</span><span class="sk-pill">Analyse des politiques publiques</span>
+          <span class="sk-pill">Développement communautaire</span><span class="sk-pill">Protection sociale</span>
+          <span class="sk-pill">Démographie</span><span class="sk-pill">Planification &amp; suivi de projets</span>
+          <span class="sk-pill">Education (stat.)</span><span class="sk-pill">Santé (stat.)</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="sk-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Communication &amp; Outils créatifs</div>
+        <div class="sk-2col">
+          <span class="sk-pill">Canva</span><span class="sk-pill">CapCut</span>
+          <span class="sk-pill">Rédaction de rapports</span><span class="sk-pill">Conception de visuels</span>
+          <span class="sk-pill">Communication / Réseaux sociaux</span><span class="sk-pill">Marketing</span>
+          <span class="sk-pill">Montage vidéo</span><span class="sk-pill">Écriture créative / Scénario</span>
+        </div>
+      </div>
+
+      <!-- L4 : Économie + Leadership côte à côte -->
+      <div class="skill-block">
+        <div class="sk-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Économie</div>
+        <div class="sk-2col">
+          <span class="sk-pill">Comptes nationaux</span><span class="sk-pill">Échanges extérieurs</span>
+          <span class="sk-pill">Politiques économiques</span><span class="sk-pill">Microéconomie</span>
+          <span class="sk-pill">Banque de données économiques</span><span class="sk-pill">Comptabilité des entreprises</span>
+          <span class="sk-pill">Tableaux entrées-sorties</span><span class="sk-pill">PIB &amp; agrégats macroéconomiques</span>
+          <span class="sk-pill">Monnaie</span><span class="sk-pill">Théories économiques</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="sk-cat">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Leadership, Management &amp; Rédaction
+        </div>
+        <div class="sk-2col">
+          <span class="sk-pill">Leadership &amp; prise de décision</span><span class="sk-pill">Management d'équipe</span>
+          <span class="sk-pill">Gestion de projet</span><span class="sk-pill">Animation de réunions</span>
+          <span class="sk-pill">Rédaction scientifique</span><span class="sk-pill">Rédaction administrative</span>
+          <span class="sk-pill">Rédaction de rapports techniques</span><span class="sk-pill">Revue de littérature</span>
+          <span class="sk-pill">Méthodologie de recherche</span><span class="sk-pill">Archivage de documents</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tech-section">
+      <div class="tech-title">Soft Skills</div>
+      <div class="tags-wrap" style="justify-content:space-between;">
+        <span class="tag-soft">Esprit d'équipe</span>
+        <span class="tag-soft">Sens de l'écoute</span>
+        <span class="tag-soft">Sens des responsabilités</span>
+        <span class="tag-soft">Adaptabilité</span>
+        <span class="tag-soft">Organisation &amp; rigueur</span>
+        <span class="tag-soft">Curiosité intellectuelle</span>
+        <span class="tag-soft">Leadership</span>
+        <span class="tag-soft">Résolution de problèmes</span>
+        <span class="tag-soft">Esprit critique</span>
+        <span class="tag-soft">Communication écrite &amp; orale</span>
+        <span class="tag-soft">Autonomie</span>
+        <span class="tag-soft">Prise d'initiative</span>
+        <span class="tag-soft">Gestion du stress</span>
+        <span class="tag-soft">Sens de la diplomatie</span>
+        <span class="tag-soft">Empathie</span>
+        <span class="tag-soft">Ponctualité &amp; fiabilité</span>
+        <span class="tag-soft">Capacité d'apprentissage rapide</span>
+        <span class="tag-soft">Travail sous pression</span>
+        <span class="tag-soft">Créativité</span>
+        <span class="tag-soft">Esprit d'analyse</span>
+        <span class="tag-soft">Sens de la synthèse</span>
+        <span class="tag-soft">Ouverture d'esprit</span>
+        <span class="tag-soft">Gestion des priorités</span>
+        <span class="tag-soft">Patience &amp; persévérance</span>
+        <span class="tag-soft">Intégrité &amp; éthique professionnelle</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ DISTINCTIONS -->
+  <section id="distinctions" class="section">
+    <div class="s-tag">05 - Honneurs &amp; Prix</div>
+    <h2 class="s-title">Distinctions &amp; <em>Compétitions</em></h2><div class="s-line"></div>
+    <div class="dist-grid">
+      <div class="dist-card"><div class="dist-rank rb">6e</div><div class="dist-info"><div class="dist-title">Concours National de Scénario - Film "Modou, le souffle du futur"</div><div class="dist-org">TEKKI PROD · Sénégal</div><span class="dist-year">Avril 2025</span></div></div>
+      <div class="dist-card"><div class="dist-rank rg">1er</div><div class="dist-info"><div class="dist-title">Lauréat - Concours d'Excellence UA 2023 (Maths &amp; Culture Générale)</div><div class="dist-org">IAM · Burkina Faso</div><span class="dist-year">Mai 2023</span></div></div>
+      <div class="dist-card"><div class="dist-rank rb">3e</div><div class="dist-info"><div class="dist-title">Concours National d'Entrée aux Écoles du RESA</div><div class="dist-org">CAPESA · Burkina Faso</div><span class="dist-year">Avril 2023</span></div></div>
+      <div class="dist-card"><div class="dist-rank rg">1er</div><div class="dist-info"><div class="dist-title">Concours National d'Entrée au Collège d'Excellence Horizon International</div><div class="dist-org">CSHI · Burkina Faso</div><span class="dist-year">Août 2022</span></div></div>
+      <div class="dist-card"><div class="dist-rank rg">1er</div><div class="dist-info"><div class="dist-title">Meilleur élève du second cycle au Lycée Municipal de Yagma</div><div class="dist-org">LMY · Burkina Faso</div><span class="dist-year">Juillet 2021</span></div></div>
+      <div class="dist-card"><div class="dist-rank rg">1er</div><div class="dist-info"><div class="dist-title">Meilleur élève à l'examen du BEPC du Lycée Privé de Kilwin</div><div class="dist-org">LPK · Burkina Faso</div><span class="dist-year">Juin 2020</span></div></div>
+    </div>
+  </section>
+
+  <!-- ⑥ CERTIFICATIONS -->
+  <section id="certifs" class="section">
+    <div class="s-tag">06 - Accréditations</div>
+    <h2 class="s-title">Certifications <em>&amp; Formations</em></h2><div class="s-line"></div>
+    <div class="cert-cards-grid">
+
+      <div class="cert-card">
+        <div class="cert-card-top">
+          <div class="cert-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="cert-card-title">Certificat - Formations FAO</div>
+          <div class="cert-card-issuer">Organisation des Nations Unies pour l'Alimentation</div>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-card-date">2025</div>
+          <div class="cert-card-desc">Certification délivrée par la FAO (Organisation des Nations Unies pour l'Alimentation et l'Agriculture) dans le cadre de formations spécialisées en science et analyse des risques dans le Codex.</div>
+        </div>
+        <div class="cert-card-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Certification/certificat_fao.png','Distinctions/Certification/certificat_fao.pdf','Certificat FAO')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir le certificat
+          </button>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-top">
+          <div class="cert-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="cert-card-title">Certificat - ONU / Nations Unies</div>
+          <div class="cert-card-issuer">Organisation des Nations Unies</div>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-card-date">2025</div>
+          <div class="cert-card-desc">Certificat délivré par l'Organisation des Nations Unies. Formation sur la classification internationale des infractions à des fins statistiques.</div>
+        </div>
+        <div class="cert-card-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Certification/certificat_onu.png','Distinctions/Certification/certificat_onu.pdf','Certificat ONU')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir le certificat
+          </button>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-top">
+          <div class="cert-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="cert-card-title">Certificat - PNUD</div>
+          <div class="cert-card-issuer">Programme des Nations Unies pour le Développement</div>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-card-date">2025</div>
+          <div class="cert-card-desc">Certification du Programme des Nations Unies pour le Développement. Formation axée sur la conception d'un indice de pauvreté multidimensionnelle.</div>
+        </div>
+        <div class="cert-card-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Certification/certificat_pnud.png','Distinctions/Certification/certificat_pnud.pdf','Certificat PNUD')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir le certificat
+          </button>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-top">
+          <div class="cert-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="cert-card-title">Certificat - UNICEF</div>
+          <div class="cert-card-issuer">Fonds des Nations Unies pour l'Enfance</div>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-card-date">2025</div>
+          <div class="cert-card-desc">Certificat du Fonds des Nations Unies pour l’enfance dans le cadre d'une formation sur l'introduction au leadership de cluster.</div>
+        </div>
+        <div class="cert-card-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Certification/certificat_unicef.png','Distinctions/Certification/certificat_unicef.pdf','Certificat UNICEF')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir le certificat
+          </button>
+        </div>
+      </div>
+
+      <div class="cert-card cert-hidden" style="display:none;">
+        <div class="cert-card-top">
+          <div class="cert-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="cert-card-title">Certificat - FUNUAP / UNFPA</div>
+          <div class="cert-card-issuer">Fonds des Nations Unies pour la Population</div>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-card-date">2025</div>
+          <div class="cert-card-desc">Certification de l'UNFPA portant sur l'introduction au recensement de la population et de l'habitat.</div>
+        </div>
+        <div class="cert-card-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Certification/certificat_funuap.png','Distinctions/Certification/certificat_funuap.pdf','Certificat FUNUAP/UNFPA')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir le certificat
+          </button>
+        </div>
+      </div>
+
+      <div class="cert-card cert-hidden" style="display:none;">
+        <div class="cert-card-top">
+          <div class="cert-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="cert-card-title">Certificat - Go AI / Intelligence Artificielle</div>
+          <div class="cert-card-issuer">Programme Go AI</div>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-card-date">2025</div>
+          <div class="cert-card-desc">Certification en immersion spéciale et interractive sur l'Intelligence Artificielle du programme Go AI.</div>
+        </div>
+        <div class="cert-card-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Certification/certificat_go_ai.png','Distinctions/Certification/certificat_go_ai.pdf','Certificat Go AI')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir le certificat
+          </button>
+        </div>
+      </div>
+
+      <div class="cert-card cert-hidden" style="display:none;">
+        <div class="cert-card-top">
+          <div class="cert-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="cert-card-title">Certificat - BIAB / African Leadership Academy</div>
+          <div class="cert-card-issuer">BIAB (Build In A Box) - African Leadership Academy</div>
+        </div>
+        <div class="cert-card-body">
+          <div class="cert-card-date">2025</div>
+          <div class="cert-card-desc">Certification obtenue dans le cadre du programme BIAB, axée sur le leadership et la construction & gestion de projets.</div>
+        </div>
+        <div class="cert-card-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Certification/certificat_biab.png','Distinctions/Certification/certificat_biab.pdf','Certificat BIAB')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir le certificat
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="voir-plus-wrap">
+      <button class="voir-plus-btn" id="certVoirPlusBtn" onclick="toggleVoirPlusGeneric('cert')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Voir tous les certificats (7)
+      </button>
+    </div>
+  </section>
+
+
+  <section id="reconnaissance" class="section">
+    <div class="s-tag">07 - Rayonnement</div>
+    <h2 class="s-title">Reconnaissance <em>&amp; Engagements</em></h2><div class="s-line"></div>
+    <div class="reconn-grid">
+      <div class="reconn-card">
+        <div class="reconn-header">
+          <div class="reconn-emoji"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <div><div class="reconn-h-title">Association des Scolaires Burkinabè de Dakar (ASB)</div><div class="reconn-h-org">Dakar, Sénégal · 2024–2025</div></div>
+        </div>
+        <div class="reconn-body">
+          <div class="reconn-date">Juil. 2024 - Juil. 2025</div>
+          <div class="reconn-desc">Secrétaire chargé aux affaires sportives et culturelles de l'Association des Scolaires Burkinabè de Dakar. Organisation des activités culturelles et sportives de la communauté scolaire burkinabè.</div>
+        </div>
+        <div class="reconn-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Attestations_reconnaissance/attestation_ASB.png','Distinctions/Attestations_reconnaissance/attestation_ASB.pdf','Attestation ASB')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir l'attestation
+          </button>
+        </div>
+      </div>
+      <div class="reconn-card">
+        <div class="reconn-header">
+          <div class="reconn-emoji"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="reconn-h-title">Union Fraternelle des Ressortissants Burkinabè au Sénégal (UFRBS)</div><div class="reconn-h-org">Dakar, Sénégal · 2024–2025</div></div>
+        </div>
+        <div class="reconn-body">
+          <div class="reconn-date">Nov. 2024 - Nov. 2025</div>
+          <div class="reconn-desc">Membre du comité d'organisation des journées culturelles et d'engagement patriotique des Burkinabè résidant au Sénégal. Contribution à la cohésion de la diaspora burkinabè.</div>
+        </div>
+        <div class="reconn-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Attestations_reconnaissance/attestation_ufrbs.png','Distinctions/Attestations_reconnaissance/attestation_ufrbs.pdf','Attestation UFRBS')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir l'attestation
+          </button>
+        </div>
+      </div>
+      <div class="reconn-card">
+        <div class="reconn-header">
+          <div class="reconn-emoji"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div>
+            <div class="reconn-h-title">Chargé à la Communication - Commission Uniforme ENSAE</div>
+            <div class="reconn-h-org">Amicale des Élèves et Stagiaires de l'ENSAE · Dakar</div>
+          </div>
+        </div>
+        <div class="reconn-body">
+          <div class="reconn-date">Année académique 2024 - 2025</div>
+          <div class="reconn-desc">Attestation de participation en qualité de chargé à la communication au sein de la Commission Uniforme de l'ENSAE. Contribution à faire du projet un symbole d'identité collective et un reflet de l'esprit de promotion.</div>
+        </div>
+        <div class="reconn-footer">
+          <button class="cert-view-btn" onclick="openFileModal('Distinctions/Attestations_reconnaissance/attestation_uniforme_ensae.jpeg','Distinctions/Attestations_reconnaissance/attestation_uniforme_ensae.jpeg','Attestation Commission Uniforme ENSAE')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir l'attestation
+          </button>
+        </div>
+      </div>
+      <div class="reconn-card">
+        <div class="reconn-header">
+          <div class="reconn-emoji"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="reconn-h-title">Secrétaire Général - AMIBE ENSAE</div><div class="reconn-h-org">Amicale des Burkinabè de l'ENSAE</div></div>
+        </div>
+        <div class="reconn-body">
+          <div class="reconn-date">Août 2024 - Août 2025</div>
+          <div class="reconn-desc">Élection comme Secrétaire Général de l'amicale des étudiants burkinabè de l'ENSAE. Coordination et représentation institutionnelle.</div>
+        </div>
+        <div class="reconn-footer">
+          <button class="cert-view-btn" onclick="openCertModal2Upload('rc4','Attestation AMIBE')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Voir l'attestation
+          </button>
+          <input type="file" id="rc4-inp" accept="image/*,.pdf" style="display:none" onchange="loadCert2(this,'rc4','Attestation AMIBE')">
+        </div>
+      </div>
+
+      <!-- NOUVELLES CARTES AJOUTÉES -->
+
+      <div class="reconn-card reconn-hidden" style="display:none;">
+        <div class="reconn-header">
+          <div class="reconn-emoji"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <div><div class="reconn-h-title">Membre du Comité Marketing - Junior Entreprise ENSAE</div><div class="reconn-h-org">Junior Entreprise · ENSAE Pierre Ndiaye · Dakar</div></div>
+        </div>
+        <div class="reconn-body">
+          <div class="reconn-date">2024 - 2025</div>
+          <div class="reconn-desc">Membre du comité Marketing de la Junior Entreprise de l'ENSAE. Contribution à la stratégie marketing, la promotion des services et le développement de la visibilité de la Junior Entreprise.</div>
+        </div>
+        <div class="reconn-footer">
+          <button class="cert-view-btn" onclick="openCertModal2Upload('rc6','Attestation Junior Entreprise ENSAE')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir l'attestation
+          </button>
+          <input type="file" id="rc6-inp" accept="image/*,.pdf" style="display:none" onchange="loadCert2(this,'rc6','Attestation Junior Entreprise ENSAE')">
+        </div>
+      </div>
+
+      <div class="reconn-card reconn-hidden" style="display:none;">
+        <div class="reconn-header">
+          <div class="reconn-emoji"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 12h8M12 8v8"/></svg></div>
+          <div><div class="reconn-h-title">Membre du Comité Design - ENSAE Pierre Ndiaye</div><div class="reconn-h-org">ENSAE Pierre Ndiaye · Dakar</div></div>
+        </div>
+        <div class="reconn-body">
+          <div class="reconn-date">2024 - 2025</div>
+          <div class="reconn-desc">Membre du comité Design de l'ENSAE. Contribution à la création visuelle, l'identité graphique et la conception des supports de communication de l'école.</div>
+        </div>
+        <div class="reconn-footer">
+          <button class="cert-view-btn" onclick="openCertModal2Upload('rc7','Attestation Comité Design ENSAE')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir l'attestation
+          </button>
+          <input type="file" id="rc7-inp" accept="image/*,.pdf" style="display:none" onchange="loadCert2(this,'rc7','Attestation Comité Design ENSAE')">
+        </div>
+      </div>
+
+            <div class="reconn-card reconn-hidden" style="display:none;">
+        <div class="reconn-header">
+          <div class="reconn-emoji"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><div class="reconn-h-title">Chargé à la Communication - Élites Burkinabè pour la Recherche Scientifique (EBRS)</div><div class="reconn-h-org">EBRS · Burkina Faso / Sénégal</div></div>
+        </div>
+        <div class="reconn-body">
+          <div class="reconn-date">Août 2024 - En cours</div>
+          <div class="reconn-desc">Chargé à la communication de l'association Élites Burkinabè pour la Recherche Scientifique. Gestion de la communication institutionnelle et promotion des activités scientifiques de l'association.</div>
+        </div>
+        <div class="reconn-footer">
+          <button class="cert-view-btn" onclick="openCertModal2Upload('rc5','Attestation EBRS')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Voir l'attestation
+          </button>
+          <input type="file" id="rc5-inp" accept="image/*,.pdf" style="display:none" onchange="loadCert2(this,'rc5','Attestation EBRS')">
+        </div>
+      </div>
+    </div>
+
+    <!-- Voir plus -->
+    <div class="voir-plus-wrap" style="display:flex;justify-content:center;">
+      <button class="voir-plus-btn" id="reconnVoirPlusBtn" onclick="toggleVoirPlusGeneric('reconn')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Voir tous les engagements (7)
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ⑦ PROJETS -->
+  <section id="projets" class="section">
+    <div class="s-tag">07 - Travaux Antérieurs</div>
+    <h2 class="s-title">Projets &amp; <em>Réalisations</em></h2><div class="s-line"></div>
+    <div class="proj-grid" id="projGrid"></div>
+    <button class="voir-plus-btn" id="voirPlusBtn" onclick="toggleVoirPlus()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      Voir tous les projets (9 au total)
+    </button>
+  </section>
+
+
+
+  <!-- ⑨ LOISIRS -->
+  <section id="loisirs" class="section">
+    <div class="s-tag">09 - Personnalité</div>
+    <h2 class="s-title">Loisirs &amp; <em>Centres d'intérêt</em></h2><div class="s-line"></div>
+    <div class="hobby-grid">
+      <div class="hobby-card"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="hobby-label">Cinéma &amp; Écriture</div></div>
+      <div class="hobby-card"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="hobby-label">Data &amp; Viz</div></div>
+      <div class="hobby-card"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="hobby-label">Lecture</div></div>
+      <div class="hobby-card"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="hobby-label">Musique</div></div>
+      <div class="hobby-card"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="hobby-label">Sport</div></div>
+      <div class="hobby-card"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div><div class="hobby-label">Design Graphique</div></div>
+      <div class="hobby-card hobb-hidden" style="display:none;"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><div class="hobby-label">Cultures Africaines</div></div>
+      <div class="hobby-card hobb-hidden" style="display:none;"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M9 9h.01M15 9h.01M9 15h6"/></svg></div><div class="hobby-label">Documentaire</div></div>
+      <div class="hobby-card hobb-hidden" style="display:none;"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div><div class="hobby-label">Voyage</div></div>
+      <div class="hobby-card hobb-hidden" style="display:none;"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="hobby-label">Photographie</div></div>
+      <div class="hobby-card hobb-hidden" style="display:none;"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="hobby-label">Bénévolat</div></div>
+      <div class="hobby-card hobb-hidden" style="display:none;"><div class="hobby-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div><div class="hobby-label">Réseaux sociaux</div></div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="voir-plus-wrap">
+      <button class="voir-plus-btn" id="hobbVoirPlusBtn" onclick="toggleVoirPlusGeneric('hobb')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Voir tous les loisirs (9)
+      </button>
+    </div>
+  </section>
+
+  <!-- ⑩ LANGUES -->
+  <section id="langues" class="section">
+    <div class="s-tag">10 - Communication</div>
+    <h2 class="s-title">Langues</h2><div class="s-line"></div>
+    <div class="lang-grid" style="justify-content:center; max-width:700px; margin:0 auto;">
+      <div class="lang-card"><div class="lang-flag"></div><div class="lang-name">Français</div><div style="margin-top:.5rem;"></div><div class="lang-level">Très bien · Courant</div><div style="margin-top:.6rem;"></div><div class="lang-bar"><div class="lang-fill" data-w="95%"></div></div></div>
+      <div class="lang-card"><div class="lang-flag"></div><div class="lang-name">Mooré</div><div style="margin-top:.5rem;"></div><div class="lang-level">Bien · Langue Nationale</div><div style="margin-top:.6rem;"></div><div class="lang-bar"><div class="lang-fill" data-w="80%"></div></div></div>
+      <div class="lang-card"><div class="lang-flag"></div><div class="lang-name">Anglais</div><div style="margin-top:.5rem;"></div><div class="lang-level">Assez bien · B2</div><div style="margin-top:.6rem;"></div><div class="lang-bar"><div class="lang-fill" data-w="62%"></div></div></div>
+    </div>
+  </section>
+</main>
+
+<button class="print-fab" onclick="window.print()">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Imprimer / PDF
+</button>
+
+<input type="file" id="photoInput" accept="image/*" style="display:none">
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="projModal" onclick="if(event.target===this)closeProjModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeProjModal()"></button>
+      <div class="modal-badge" id="mBadge"></div>
+      <div class="modal-title" id="mTitle"></div>
+      <div class="modal-meta" id="mMeta"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Description</div>
+        <p class="modal-text" id="mDesc"></p>
+      </div>
+      <div class="modal-section" id="mResultsWrap">
+        <div class="modal-section-title">Résultats clés</div>
+        <ul class="modal-results" id="mResults"></ul>
+      </div>
+      <div class="modal-section" id="mTeamWrap">
+        <div class="modal-section-title">Équipe</div>
+        <p class="modal-text" id="mTeam"></p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Outils &amp; Technologies</div>
+        <div class="modal-tools" id="mTools"></div>
+      </div>
+      <div id="mLinksWrap" style="margin-top:1rem;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATE MODAL -->
+<div class="cert-modal-overlay" id="certModal" onclick="if(event.target===this)closeCertModal()">
+  <div class="cert-modal-frame">
+    <div class="cert-modal-top">
+      <div class="cert-modal-top-title" id="certModalTitle">Attestation</div>
+      <button class="cert-modal-close" onclick="closeCertModal()"></button>
+    </div>
+    <div class="cert-modal-img-wrap">
+      <img id="certModalImg" src="" alt="Document" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid var(--g200);box-shadow:0 4px 20px rgba(0,0,0,.1);">
+    </div>
+    <div class="cert-modal-footer">
+      <div class="cert-modal-name" id="certModalName"></div>
+      <button class="cert-modal-dl" id="certModalDl">⬇ Télécharger</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══ PROJETS DATA ═══ */
+const PROJECTS = [
+  {
+    badge:"ML · Jan. 2026",date:"Janvier 2026",org:"ENSAE Pierre Ndiaye",
+    title:"CardioPredict ML - Prédiction des maladies cardiovasculaires",
+    desc:"Application web interactive de prédiction des maladies cardiovasculaires utilisant des algorithmes de Machine Learning pour analyser les données cliniques de patients (13 indicateurs médicaux, 297 patients après nettoyage).",
+    results:["Phase Baseline : comparaison de 12 algorithmes (Logistique, Random Forest, SVM, Neural Network MLP, Naive Bayes…)","Modèle retenu : Neural Network MLP optimisé - architecture (50, 50, 50), activation logistique","F1-Score 88,24% (objectif 85% dépassé), Recall 90,91%, ROC-AUC 0,954","Dashboard interactif Dash : exploration, comparaison des modèles, prédiction en temps réel, rapport PDF"],
+    team:"Fatoumata BAH, Poko Ibrahim NOBA, Emmanuel DOSSEKOU, Armand DJEKONBE · Superviseur : Mme Fatou SALL",
+    tools:["Python","Dash","scikit-learn","Plotly","pandas","RobustScaler"],
+    links:[{label:"Dossier projet",href:"https://drive.google.com/drive/folders/1yxaSJmx-qX8Uw8y0UriuWhtV3TJAfMv1?usp=sharing"},{label:"Application",href:"https://hearthpredict.onrender.com/"}]
+  },
+  {
+    badge:"NLP · Fév. 2026",date:"Février 2026",org:"ENSAE Pierre Ndiaye",
+    title:"Détecteur de Fake News FCC - NLP &amp; Machine Learning",
+    desc:"Application web de détection de la désinformation avec une précision de 98,34%. Analyse du texte d'un article et classification comme fake ou fiable. Support multilingue (5 langues) et plusieurs méthodes d'entrée.",
+    results:["Modèle : Régression Logistique avec vectorisation TF-IDF (5 000 features, bigrammes)","Dataset : 32 456 articles (Kaggle Fake News Dataset)","Accuracy, Precision, Recall et F1-Score tous à 98,34% sur 7 728 articles de test","Architecture microservices : Backend Flask (Render.com) + Frontend Streamlit","Fonctionnalités : détection automatique de la langue, traduction en temps réel, API REST, historique CSV"],
+    team:"Poko Ibrahim NOBA, Armand DJEKONBE, Ndeye Salla TOURE, Mamadou Maxwell KASSI · Superviseur : Mme Mously DIAW",
+    tools:["Python","Flask","Streamlit","scikit-learn","NLTK","TF-IDF","Plotly","Gunicorn"],
+    links:[{label:"Dossier projet",href:"https://drive.google.com/drive/folders/19fGiCVjZ8qq5yiATek1tYSLY3EuifP0N?usp=sharing"},{label:"Application",href:"https://fcc-fake-news-detector.streamlit.app/"}]
+  },
+  {
+    badge:"Économie · Mars 2025",date:"Mars 2025",org:"ENSAE Pierre Ndiaye",
+    title:"Analyse de l'impact des transferts monétaires sur la pauvreté au Sénégal",
+    desc:"Étude analysant l'impact de huit scénarios de transferts monétaires ciblés sur les indicateurs de pauvreté et d'inégalité au Sénégal en 2023. À partir des données de l'EHCVM 2018 vieillies à 2023.",
+    results:["Utilisation des indices FGT (Foster-Greer-Thorbecke) et du coefficient de Gini","Transferts ciblant les ménages avec enfants &lt;18 ans : meilleure performance (réduction 4,13% de la pauvreté)","Scénario le plus efficient : ménages ruraux avec enfants &lt;2 ans (score d'efficience : 0,00743)"],
+    team:"Superviseur : M. SENE, Ingénieur Statisticien Économiste",
+    tools:["R","Stata","Vieillissement de données","Simulation","Indices FGT","Gini"],
+    links:[{label:"Accéder aux documents",href:"https://drive.google.com/drive/folders/1oo5skiaHoqQsoY6MEGPzVV94JYE-QHza?usp=drive_link"}]
+  },
+  {
+    badge:"SIG · Juin 2025",date:"Juin 2025",org:"ENSAE Pierre Ndiaye",
+    title:"Analyse spatiale SIG - Accessibilité aux infrastructures sociales au Sénégal",
+    desc:"Analyse spatiale de l'accessibilité géographique aux infrastructures de santé et d'éducation à l'échelle communale au Sénégal. Utilisation de données OpenStreetMap et calcul des distances entre chaque commune et l'infrastructure la plus proche.",
+    results:["Hôpitaux : Communes comme Velingara, Ouro Sidi, Goudiry à plus de 75 km du plus proche","Centres de santé : Zones Est et Sud-Est (Velingara, Ogo, Kéniéba) avec distances dépassant 150–180 km","Inégalités marquées : concentration des services dans l'axe côtier Dakar-Thiès"],
+    team:"Encadrement : M. DIEYE, Ingénieur en géomatique",
+    tools:["QGIS","OpenStreetMap","QuickOSM","Analyses de proximité spatiale","Cartographie thématique"],
+    links:[{label:"Accéder aux documents",href:"https://drive.google.com/drive/folders/11rgdrYfjH8-oY7f-OZeJw00xcKMcc_FI?usp=drive_link"}]
+  },
+  {
+    badge:"Dashboard · Juin 2025",date:"Juin 2025",org:"ENSAE Pierre Ndiaye",
+    title:"Tableau de bord interactif - Suivi du PTBA du PUDC 2025",
+    desc:"Dashboard interactif R/Shiny pour visualiser l'évolution du Plan de Travail et Budget Annuel (PTBA) du PUDC (Programme d'Urgence pour le Développement Communautaire) 2025.",
+    results:["Visualisation dynamique des indicateurs d'avancement budgétaire","Interface interactive permettant le filtrage par activité et période","Intégration de graphiques Plotly pour une meilleure lisibilité des données"],
+    team:"Poko Ibrahim NOBA &amp; David Christ NZONDE · Encadrement : M. Papa Massene SENE",
+    tools:["R/Shiny","Plotly","bs4Dash","dplyr","tidyr"],
+    links:[{label:"Accéder à l'application",href:"https://davidchristnzonde.shinyapps.io/Dashboard_PTBA_PUDC_2025/"}]
+  },
+  {
+    badge:"ACP · Jan. 2025",date:"Janvier 2025",org:"ENSAE Pierre Ndiaye",
+    title:"Méthodologie de calcul d'indice synthétique par analyse factorielle",
+    desc:"Présentation comparative de deux méthodes de construction d'indices composites : l'Analyse en Composantes Principales (ACP) et la méthode CFAR-m basée sur les réseaux de neurones et cartes auto-organisatrices de Kohonen. Application sur 68 pays.",
+    results:["Méthode ACP : indice expliquant 91,5% de la variance totale (80,8% axe 1 + 10,6% axe 2)","Méthode CFAR-m : pondérations individualisées par pays via apprentissage automatique","Tests de robustesse : R² > 0,76 pour CFAR-m, R² ≈ 1,00 pour ACP, normalité validée"],
+    team:"Poko Ibrahim NOBA, Fatoumata BAH, SAER NDAO, TCHAPDA Wilfred, ARMAND DJEKOMBE · Encadrement : M. BARRY",
+    tools:["R","ACP","ACM","Cartes de Kohonen","Réseaux de neurones","Indices composites"],
+    links:[{label:"Accéder aux documents",href:"https://drive.google.com/drive/folders/1CgtJKftoaxwMgUkeaBWWHCCZKybVNK1b?usp=drive_link"}]
+  },
+  {
+    badge:"Démographie · Juin 2025",date:"Juin 2025",org:"ENSAE Pierre Ndiaye",
+    title:"Déterminants de la croissance démographique",
+    desc:"Analyse des déterminants de la croissance démographique à travers l'impact de la fécondité et de la mortalité. Modèle de régression linéaire multiple appliqué à un échantillon de 44 pays.",
+    results:["Fécondité élevée : principal moteur de la croissance démographique","Mortalité plus élevée : frein à la croissance","Taux de croissance prédit : 2,15% (IC : [1,83% ; 2,48%])"],
+    team:"Encadrement : M. BA, Ingénieur Statisticien Économiste",
+    tools:["R","Stata","Excel"],
+    links:[{label:"Accéder aux documents",href:"https://drive.google.com/drive/folders/1D64bn1ra3k0qkaRujNgdIFZ_gl8NGLl4?usp=drive_link"}]
+  },
+  {
+    badge:"Pauvreté · Sept. 2025",date:"Septembre 2025",org:"ANSD - Rapport de stage",
+    title:"Échelles d'équivalence et mesure de la pauvreté au Sénégal",
+    desc:"Étude comparative de l'impact des échelles d'équivalence (FAO, Oxford, OCDE modifiée, racine de N) sur la mesure de la pauvreté au Sénégal à partir de l'EHCVM II (2021/2022).",
+    results:["Le taux de pauvreté varie de 37,50% (taille brute) à 9,68% (OCDE modifiée)","Sensibilité extrême de la mesure au choix méthodologique","Analyses désagrégées par milieu de résidence et région"],
+    team:"Stage d'immersion - ANSD (Agence nationale de la Statistique et de la Démographie)",
+    tools:["R","Stata","EHCVM II","Analyses désagrégées","Indices FGT"],
+    links:[{label:"Accéder aux documents",href:"https://drive.google.com/drive/folders/1fxMJ31WXWdtCZsN0BTqrtjzRVAxKhatG?usp=drive_link"}]
+  },
+  {
+    badge:"Anonymisation · Avr. 2026",date:"Avril 2026",org:"ENSAE Pierre Ndiaye",
+    title:"Anonymisation de la base PASEC2014 - Protection des données d'enquête éducative",
+    desc:"Anonymisation complète de la base de données PASEC2014 portant sur 31 193 enseignants répartis dans 10 pays francophones d'Afrique subsaharienne. Application d'une méthodologie rigoureuse en 9 étapes séquentielles pour réduire les risques de ré-identification tout en préservant l'utilité analytique des données.",
+    results:[
+      "Base originale : 59 variables, 31 193 enseignants, 10 pays (Bénin, Burkina Faso, Burundi, Cameroun, Congo, Côte d'Ivoire, Niger, Sénégal, Tchad, Togo)",
+      "9 étapes d'anonymisation : suppression des identifiants directs, création d'ID anonyme, recoding de 5 quasi-identifiants, perturbation des variables continues, suppression locale",
+      "Violations k-anonymité (k=10) : 791 → 38 observations (-95%)",
+      "Taux de ré-identification global réduit significativement après application des méthodes PRAM et suppression locale",
+      "Production d'un rapport d'anonymisation complet documentant chaque transformation et ses justifications"
+    ],
+    team:"Poko Ibrahim NOBA · Superviseur : ENSAE Pierre Ndiaye",
+    tools:["R","sdcMicro","sdcApp","k-anonymité","PRAM","Suppression locale","Recoding"],
+    links:[{label:"Rapport d'anonymisation",href:"https://drive.google.com/file/d/18wkvzpLvFweM2MTuQOASrSsrX1WpdSZl/view?usp=sharing"},{label:"Autres documents",href:"https://drive.google.com/drive/folders/1zChUT3OpFmFG83N0CCBZ_HPtSr79nmEB?usp=sharing"}]
+  },
+  {
+    badge:"Archivage · Jan. 2026",date:"Janvier 2026",org:"ENSAE Pierre Ndiaye",
+    title:"Projet d'archivage statistique - Cas du Niger",
+    desc:"Enrichissement du catalogue national de données du Niger par la documentation et l'archivage de 8 enquêtes statistiques absentes du système officiel de l'Institut National de la Statistique (INS). Application du standard DDI dans Nesstar Publisher pour reconstituer l'intégrité du patrimoine statistique national.",
+    results:[
+      "Identification systématique des enquêtes réalisées au Niger et absentes du catalogue NADA de l'INS",
+      "Archivage de 8 enquêtes majeures : ECVMA 2011, STEPS 2007, EDSN-MICS 2006 & 2012, EIP 2021, SENS 2016, DIEM 2022, Programme filets de sécurité adaptatifs 2017–2020",
+      "Normalisation des métadonnées selon le standard DDI (Data Documentation Initiative) pour chaque enquête",
+      "Production de fichiers DDI conformes aux exigences du système NADA pour intégration dans le catalogue national",
+      "Analyse du catalogue existant : 65 enquêtes et 16 065 variables déjà archivées - identification des lacunes et recommandations"
+    ],
+    team:"Aïssatou GUEYE, Gilbert OUMSAORE, David Christ NZONDE M., Poko Ibrahim NOBA · Superviseur : M. BA, Chef du bureau des méthodes et normes - ANSD",
+    tools:["Nesstar Publisher","DDI 2.5","NADA","Standard Dublin Core RDF","Documentation statistique"],
+    links:[{label:"Rapport d'anonymisation",href:"https://drive.google.com/file/d/1YbnLFJlutfnZtOWzfaSNsvYLJT5alkKz/view?usp=sharing"},{label:"Autres documents",href:"https://drive.google.com/drive/folders/1s4_17sBaCDh-1-9up4iqOWEYYey_u5l8?usp=sharing"}]
+  }
+];
+
+let showAll = false;
+
+function renderProjects() {
+  const grid = document.getElementById('projGrid');
+  const count = showAll ? PROJECTS.length : 6;
+  grid.innerHTML = '';
+  for(let i=0;i<count;i++){
+    const p=PROJECTS[i];
+    const card=document.createElement('div');
+    card.className='proj-card';
+    card.onclick=()=>openProjModal(i);
+    card.innerHTML=`
+      <div class="proj-badge">${p.badge}</div>
+      <div class="proj-title">${p.title}</div>
+      <div class="proj-org">${p.org} · ${p.date}</div>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="proj-tools">${p.tools.slice(0,4).map(t=>`<span class="proj-tool">${t}</span>`).join('')}</div>
+      <div class="proj-click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Cliquer pour détails</div>
+    `;
+    grid.appendChild(card);
+  }
+}
+renderProjects();
+
+function toggleVoirPlus(){
+  showAll=!showAll;
+  renderProjects();
+  const btn=document.getElementById('voirPlusBtn');
+  btn.classList.toggle('expanded',showAll);
+  btn.innerHTML=showAll
+    ?`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg> Réduire`
+    :`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir tous les projets (9 au total)`;
+}
+
+function openProjModal(i){
+  const p=PROJECTS[i];
+  document.getElementById('mBadge').innerHTML=p.badge;
+  document.getElementById('mTitle').innerHTML=p.title;
+  document.getElementById('mMeta').textContent=p.org+' · '+p.date;
+  document.getElementById('mDesc').innerHTML=p.desc;
+  const rl=document.getElementById('mResults');
+  rl.innerHTML=p.results.map(r=>`<li>${r}</li>`).join('');
+  const tw=document.getElementById('mTeamWrap');
+  if(p.team){document.getElementById('mTeam').textContent=p.team;tw.style.display='';}
+  else tw.style.display='none';
+  document.getElementById('mTools').innerHTML=p.tools.map(t=>`<span class="modal-tool">${t}</span>`).join('');
+  const lw=document.getElementById('mLinksWrap');
+  lw.innerHTML=p.links.map(l=>`<a class="modal-link" href="${l.href}" target="_blank">${l.label}</a>`).join('');
+  document.getElementById('projModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeProjModal(){document.getElementById('projModal').classList.remove('show');document.body.style.overflow='';}
+
+/* ═══ CERT MODAL ═══ */
+const certImages={};
+function loadCert(input,id,name){
+  const f=input.files[0];if(!f)return;
+  const url=URL.createObjectURL(f);
+  certImages[id]={url,name};
+  const zone=document.getElementById(id);
+  const img=document.getElementById(id+'-img');
+  img.src=url;
+  zone.classList.add('has-image');
+  zone.querySelector('.cz-icon').style.display='none';
+}
+function openCertModal(zone,defaultName){
+  const id=zone.id;
+  if(!certImages[id]){return;}
+  const {url,name}=certImages[id];
+  document.getElementById('certModalTitle').textContent=name||defaultName;
+  document.getElementById('certModalImg').src=url;
+  document.getElementById('certModalName').textContent=name||defaultName;
+  document.getElementById('certModalDl').onclick=()=>{const a=document.createElement('a');a.href=url;a.download=name||'attestation';a.click();};
+  document.getElementById('certModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeCertModal(){document.getElementById('certModal').classList.remove('show');document.body.style.overflow='';}
+
+/* ═══ SIDEBAR ═══ */
+const stog=document.getElementById('stoggle'),sb=document.getElementById('sidebar'),mn=document.getElementById('main'),bd=document.getElementById('backdrop');
+function openSB(){sb.classList.add('open');stog.classList.add('open');bd.classList.add('show');if(window.innerWidth>900)mn.classList.add('shifted');}
+function closeSB(){sb.classList.remove('open');stog.classList.remove('open');bd.classList.remove('show');mn.classList.remove('shifted');}
+stog.addEventListener('click',()=>sb.classList.contains('open')?closeSB():openSB());
+bd.addEventListener('click',closeSB);
+document.querySelectorAll('.nav-item').forEach(n=>n.addEventListener('click',()=>{if(window.innerWidth<=900)closeSB();}));
+
+/* ═══ NAV ACTIVE + FADE ═══ */
+const sections=document.querySelectorAll('.section'),navItems=document.querySelectorAll('.nav-item');
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){navItems.forEach(n=>n.classList.remove('active'));const a=document.querySelector(`.nav-item[data-s="${x.target.id}"]`);if(a)a.classList.add('active');}});},{threshold:.3});
+const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.06});
+sections.forEach(s=>{io.observe(s);fo.observe(s);});
+
+/* LANG BARS */
+const lObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.querySelectorAll('.lang-fill').forEach(b=>b.style.width=b.dataset.w);});},{threshold:.2});
+const ls=document.getElementById('langues');if(ls)lObs.observe(ls);
+
+/* SCROLL */
+function go(id){document.querySelector(id)?.scrollIntoView({behavior:'smooth'});}
+
+/* PHOTO - relative path support */
+const photoInput=document.getElementById('photoInput');
+function syncPhoto(url){
+  ['heroImg','sbImg'].forEach(id=>{
+    const e=document.getElementById(id);
+    if(e){e.src=url;e.style.display='block';}
+  });
+  // hide placeholders
+  ['hpInit','sbInit'].forEach(id=>{
+    const e=document.getElementById(id);
+    if(e)e.style.display='none';
+  });
+}
+// Set photo from relative path - call this with your filename e.g. setProfilePhoto('ma_photo.jpg')
+window.setProfilePhoto = function(filename){
+  syncPhoto(filename);
+};
+document.getElementById('heroPhotoWrap').addEventListener('click',()=>photoInput.click());
+document.getElementById('sbPhotoWrap').addEventListener('click',()=>photoInput.click());
+photoInput.addEventListener('change',()=>{const f=photoInput.files[0];if(f)syncPhoto(URL.createObjectURL(f));});
+
+/* CV */
+let cvURL=null;
+const cvInput=document.getElementById('cvInput'),cvLabel=document.getElementById('cvLabel');
+cvInput.addEventListener('change',()=>{
+  const f=cvInput.files[0];if(!f)return;
+  if(cvURL)URL.revokeObjectURL(cvURL);
+  cvURL=URL.createObjectURL(f);
+  cvLabel.textContent=' '+f.name;
+});
+function downloadCV(){
+  if(cvURL){const a=document.createElement('a');a.href=cvURL;a.download='CV_Ibrahim_NOBA.pdf';a.click();}
+  else cvInput.click();
+}
+document.getElementById('sbDlBtn').onclick=downloadCV;
+
+/* ═══ EXPERIENCES DATA ═══ */
+const EXPS = [
+  {
+    type:"Enquête Académique",period:"Septembre 2025 - Novembre 2025",
+    title:"Enquête Académique - Bureau de Mise à Niveau (BMN)",
+    org:"Bureau de Mise à Niveau du Sénégal × ENSAE Pierre Ndiaye · Dakar",
+    desc:"Participation à une enquête académique menée conjointement par le Bureau de Mise à Niveau du Sénégal et l'ENSAE Pierre Ndiaye. Mission axée sur la collecte et la qualité des données auprès des entreprises.",
+    tasks:["Membre de l'équipe de conception et d'élaboration des outils de collecte.","Supervision sur le terrain pendant la phase de collecte des données.","Contrôle qualité des questionnaires remplis et vérification des données."]
+  },
+  {
+    type:"Stage Professionnel",period:"Août 2025 - Octobre 2025",
+    title:"Stage - Direction des Statistiques Démographiques et Sociales (DSDS)",
+    org:"Agence Nationale de la Statistique et de la Démographie (ANSD) · Dakar",
+    desc:"Stage à la DSDS de l'ANSD dans le cadre de la préparation de la 3e édition de l'Enquête Harmonisée sur les Conditions de Vie des Ménages (EHCVM) au Sénégal.",
+    tasks:["Phase de conception et d'élaboration des instruments de collecte de l'EHCVM 3e édition.","Participation à la mise en place des outils de saisie électronique des données.","Contribution à la planification logistique de la collecte sur le terrain."],
+    imgPath:"Distinctions/experiences/stage_ansd_dsds.png",
+    pdfPath:"Distinctions/experiences/stage_ansd_dsds.pdf"
+  },
+  {
+    type:"Stage Professionnel",period:"Juin 2025 - Août 2025",
+    title:"Stage - Programme d'Analyse des Systèmes Éducatifs (PASEC)",
+    org:"PASEC · CONFEMEN (Conférence des ministres de l'Éducation de la Francophonie) · Dakar",
+    desc:"Stage au sein du Programme d'Analyse des Systèmes Éducatifs de la CONFEMEN. Mission centrée sur l'évaluation des instruments de mesure des acquis scolaires dans les pays francophones.",
+    tasks:["Analyse comparative des instruments d'évaluation entre la phase de mise à l'essai et l'enquête finale.","Élaboration d'un fichier de suivi systématique des modifications opérées sur les instruments.","Contribution à l'assurance qualité des outils d'évaluation éducative."],
+    imgPath:"Distinctions/experiences/stage_confemen.png",
+    pdfPath:"Distinctions/experiences/stage_confemen.pdf"
+  },
+  {
+    type:"Stage Professionnel",period:"18 Janvier 2026 - En cours",
+    title:"Stage - Direction des Statistiques Économiques et de la Comptabilité Nationale (DSECN)",
+    org:"Agence Nationale de la Statistique et de la Démographie (ANSD) · Dakar",
+    desc:"Stage à la Direction des Statistiques Économiques et de la Comptabilité Nationale de l'ANSD. Mission axée sur l'exploration et l'analyse de la banque de données économiques et financières.",
+    tasks:["Exploration de la banque de données économiques et financières de l'ANSD.","Analyse et traitement des données macroéconomiques et financières.","Contribution à la production des statistiques économiques nationales."]
+  }
+];
+
+const expJustifs={};
+function openExpModal(i){
+  const e=EXPS[i];
+  document.getElementById('mBadge').innerHTML=e.type;
+  document.getElementById('mTitle').innerHTML=e.title;
+  document.getElementById('mMeta').textContent=e.org+' · '+e.period;
+  document.getElementById('mDesc').innerHTML=e.desc;
+  const rl=document.getElementById('mResults');
+  rl.innerHTML=e.tasks.map(t=>`<li>${t}</li>`).join('');
+  document.getElementById('mResultsWrap').querySelector('.modal-section-title').textContent='Missions & Tâches';
+  document.getElementById('mTeamWrap').style.display='none';
+  document.getElementById('mTools').innerHTML='';
+  const lw=document.getElementById('mLinksWrap');
+  if(e.imgPath){
+    lw.innerHTML=`<button class="exp-modal-justif" onclick="openFileModal('${e.imgPath}','${e.pdfPath}','${e.title}')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Voir le justificatif</button>`;
+  } else {
+    lw.innerHTML='';
+  }
+  document.getElementById('projModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+/* ═══ ACADEMIC LOGO ═══ */
+const acadLogos={};
+function loadAcadLogo(input,id,name){
+  const f=input.files[0];if(!f)return;
+  const url=URL.createObjectURL(f);
+  acadLogos[id]={url,name};
+  const wrap=document.getElementById(id);
+  const img=document.getElementById(id+'-img');
+  if(img){img.src=url;img.style.display='block';}
+  const init=wrap.querySelector('.al-init');
+  if(init)init.style.display='none';
+}
+function openAcadLogoModal(id,name){
+  if(acadLogos[id])openCertModalGeneric(acadLogos[id],name);
+}
+
+/* ═══ DIPLOME MODAL (acad) ═══ */
+const diplomes={};
+function loadDiplome(input,id,name){
+  const f=input.files[0];if(!f)return;
+  const url=URL.createObjectURL(f);
+  diplomes[id]={url,name,file:f};
+  openCertModalGeneric({url,name},name);
+}
+function openDiplomeModal(id,name){
+  const d=diplomes[id];
+  if(d){openCertModalGeneric(d,name);}
+  else{document.getElementById(id+'-inp').click();}
+}
+
+/* ═══ CERT2 (certifications + reconnaissance) ═══ */
+const cert2Store={};
+function loadCert2(input,id,name){
+  const f=input.files[0];if(!f)return;
+  const url=URL.createObjectURL(f);
+  cert2Store[id]={url,name,file:f};
+  openCertModalGeneric({url,name},name);
+}
+function openCertModal2(id,name){
+  const c=cert2Store[id];
+  if(c){openCertModalGeneric(c,name);}
+  else{document.getElementById(id+'-inp').click();}
+}
+
+/* ═══ DIRECT FILE OPENER (imgPath = image to show, pdfPath = PDF to download) ═══ */
+function openFileModal(imgPath, pdfPath, name){
+  const img = document.getElementById('certModalImg');
+  document.getElementById('certModalTitle').textContent = name || 'Document';
+  document.getElementById('certModalName').textContent = name || '';
+  img.src = imgPath;
+  img.style.display = 'block';
+  document.getElementById('certModalDl').onclick = () => {
+    const a = document.createElement('a');
+    a.href = pdfPath || imgPath;
+    a.download = name || 'document';
+    a.target = '_blank';
+    a.click();
+  };
+  document.getElementById('certModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+/* Upload-based cert opener */
+function openCertModal2Upload(id,name){
+  const c=cert2Store[id];
+  if(c){openCertModalGeneric(c,name);}
+  else{document.getElementById(id+'-inp').click();}
+}
+
+/* ═══ GENERIC CERT VIEWER ═══ */
+function openCertModalGeneric(data,name){
+  document.getElementById('certModalTitle').textContent=name||'Document';
+  document.getElementById('certModalName').textContent=name||'';
+  const img=document.getElementById('certModalImg');
+  img.src=data.url;
+  img.style.display='block';
+  document.getElementById('certModalDl').onclick=()=>{
+    const a=document.createElement('a');a.href=data.url;
+    a.download=name||'document';a.target='_blank';a.click();
+  };
+  document.getElementById('certModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeCertModal(){
+  document.getElementById('certModal').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+/* ═══ GENERIC VOIR PLUS ═══ */
+const vpState = {};
+function toggleVoirPlusGeneric(prefix){
+  const isOpen = vpState[prefix];
+  vpState[prefix] = !isOpen;
+  const hidden = document.querySelectorAll(`.${prefix}-hidden`);
+  const btn = document.getElementById(`${prefix}VoirPlusBtn`);
+  hidden.forEach(el => { el.style.display = isOpen ? 'none' : ''; });
+  if(btn){
+    const svg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">';
+    if(!isOpen){
+      btn.classList.add('expanded');
+      btn.innerHTML = svg+'<polyline points="18 15 12 9 6 15"/></svg> Réduire';
+    } else {
+      btn.classList.remove('expanded');
+      const labels = {
+        cert: 'Voir tous les certificats (7)',
+        resp: 'Voir toutes les responsabilités (4)',
+        hobb: 'Voir tous les loisirs (9)'
+      };
+      btn.innerHTML = svg+'<polyline points="6 9 12 15 18 9"/></svg> ' + (labels[prefix]||'Voir plus');
+    }
+  }
+}
+
+/* KEYBOARD ESC */
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeProjModal();closeCertModal();}});
+</script>
+</body>
+</html>
