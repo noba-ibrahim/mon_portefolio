@@ -1503,18 +1503,11 @@ photoInput.addEventListener('change',()=>{const f=photoInput.files[0];if(f)syncP
 
 /* CV */
 let cvURL=null;
-const cvInput=document.getElementById('cvInput'),cvLabel=document.getElementById('cvLabel');
-cvInput.addEventListener('change',()=>{
-  const f=cvInput.files[0];if(!f)return;
-  if(cvURL)URL.revokeObjectURL(cvURL);
-  cvURL=URL.createObjectURL(f);
-  cvLabel.textContent=' '+f.name;
-});
+const cvInput=document.getElementById('cvInput');
 function downloadCV(){
-  if(cvURL){const a=document.createElement('a');a.href=cvURL;a.download='CV_Ibrahim_NOBA.pdf';a.click();}
-  else cvInput.click();
+  window.open('https://raw.githubusercontent.com/noba-ibrahim/cv_ibrahim_noba/main/curriculum_vitae_Ibrahim_NOBA.pdf','_blank');
 }
-document.getElementById('sbDlBtn').onclick=downloadCV;
+
 
 /* ═══ EXPERIENCES DATA ═══ */
 const EXPS = [
