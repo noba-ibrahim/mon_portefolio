@@ -577,7 +577,7 @@ body{font-family:'Times New Roman',Times,serif;background:var(--w);color:var(--g
 
     <!-- ROW 3 : Stats en ligne -->
     <div class="hero-stats-row au d3">
-      <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Stages &amp; Missions</div></div>
+      <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Stages &amp; Missions</div></div>
       <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">Projets Réalisés</div></div>
       <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Années d'expérience</div></div>
       <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Distinctions</div></div>
@@ -687,6 +687,17 @@ body{font-family:'Times New Roman',Times,serif;background:var(--w);color:var(--g
     <div class="s-tag">03 - Parcours Professionnel</div>
     <h2 class="s-title">Expériences</h2><div class="s-line"></div>
     <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-type">Stage</div>
+        <div class="exp-period">Juil. 2026 - En cours</div>
+        <div class="exp-title">Stage - Direction des Activités de Marchés et de Trésorerie</div>
+        <div class="exp-org">Middle Office · CBAO Groupe Attijariwafa bank · Dakar</div>
+        <div class="exp-preview">Automatisation sous Excel/VBA du traitement et du contrôle des opérations de marché et de trésorerie.</div>
+        <button class="exp-btn" onclick="openExpModal(4)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Voir détails
+        </button>
+      </div>
       <div class="exp-card">
         <div class="exp-type">Stage</div>
         <div class="exp-period">Janv. 2026 - En cours</div>
@@ -1542,6 +1553,13 @@ const EXPS = [
     org:"Agence Nationale de la Statistique et de la Démographie (ANSD) · Dakar",
     desc:"Stage à la Direction des Statistiques Économiques et de la Comptabilité Nationale de l'ANSD. Mission axée sur l'exploration et l'analyse de la banque de données économiques et financières.",
     tasks:["Exploration de la banque de données économiques et financières de l'ANSD.","Analyse et traitement des données macroéconomiques et financières.","Contribution à la production des statistiques économiques nationales."]
+  },
+  {
+    type:"Stage Professionnel",period:"Juillet 2026 - En cours",
+    title:"Stage - Direction des Activités de Marchés et de Trésorerie",
+    org:"Middle Office · CBAO Groupe Attijariwafa bank · Dakar",
+    desc:"Stage au Middle Office de la Direction des Activités de Marchés et de Trésorerie de la CBAO, au contact de la salle des marchés. Mission centrée sur l'automatisation des traitements et le contrôle des opérations de trésorerie, de change et de transferts internationaux.",
+    tasks:["Conception d'un outil Excel/VBA d'import et de consolidation des relevés bancaires SWIFT MT940.","Mise en place du suivi automatisé des opérations en suspens.","Développement d'un outil de consolidation des transferts internationaux (transferts émis et reçus, remises et crédits documentaires).","Mise en place d'un fichier de suivi des incidents de la salle des marchés."]
   }
 ];
 
